@@ -35,7 +35,7 @@
 					</div>
 					<div class="col-sm-6">
 						<h4>Details</h4>
-						<p><?=$modal['description'];?></p>
+						<p><?=nl2br($modal['description']);?></p>
 						<hr>
 						<p>Price:$<?=$modal['price'];?></p>
 						<p>Brand: <?=$brand['brand'];?></p>

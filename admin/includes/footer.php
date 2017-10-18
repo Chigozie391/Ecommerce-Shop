@@ -5,13 +5,29 @@
 </footer>
 
 <script>
-	function get_child_options(){
-			console.log('jik');
+	function updateSizes() {
+		var sizeString = '';
+		for(var i = 1;i<=6;i++){
+			if($('#size'+i).val() != ''){
+				sizeString +=$('#size'+i).val() + ':' + $('#qty'+i).val() + ',';
+			}
+		}
+		$('#sizes').val(sizeString);
+	}
+
+
+	
+
+	function get_child_options(selected){
 		var parentID = $('#parent').val();
+		if(typeof selected === 'undefined'){
+			var selected = '';
+		}
+		console.log(selected);
 		$.ajax({
 			url:'/shop/admin/parsers/child_category.php',
 			type: 'POST',
-			data: {parentID: parentID},
+			data: {parentID: parentID,selected:selected},
 			success:function(data){
 				$('#child').html(data);
 			},
@@ -19,9 +35,11 @@
 				alert('Something Went Wrong with the child option');
 			}
 		});
-
 	}
-	$('select[name="parent"]').change(get_child_options);
+
+	$('select[name="parent"]').change(function(){
+		get_child_options();
+	});
 </script>
 
 

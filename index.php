@@ -17,7 +17,7 @@
     					<div class="col-md-3 col-sm-4 text-center img-parent">
 	    					<h4><?=$product['title']?></h4>
 	    					<img src="<?=$product['image'] ?>" class="img-fluid" alt="<?=$product['title']?>">
-	    					<p>Price: <?=$product['price']?></p>
+	    					<p>Price: $<?=$product['price']?></p>
 	    						<button class="btn btn-sm btn-success" onclick="detailsModal(<?=$product['id']?>)">Details</button>
 	    			</div>
 	    			<?php endwhile; ?>
