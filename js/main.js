@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
     var jssor_1_SlideshowTransitions = [
-        { $Duration: 800, $Opacity: 2 }
+        { $Duration: 3000, $Opacity: 2 }
     ];
 
     var jssor_1_options = {

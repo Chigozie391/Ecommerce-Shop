@@ -28,6 +28,7 @@
 		<div class="modal-body">
 			<div class="container-fluid">
 				<div class="row">
+					<div id="modal_errors" class= "bg-danger"></div>
 					<div class="col-sm-6">
 						<div class="center-block">
 							<img src="<?=$modal['image'];?>" class="details img-responsive">
@@ -39,11 +40,13 @@
 						<hr>
 						<p>Price:$<?=$modal['price'];?></p>
 						<p>Brand: <?=$brand['brand'];?></p>
-						<form action="add_cart.php" method="post">
-							<div class="form-group">
-								<div class="col-xs-3 col-md-3">
+					<form action="add_cart.php" method="post" id = "add_product_form">
+							<input type="hidden" id="available" name="available" value="">
+							<input type="hidden" id="product_id" name = "product_id" value = "<?=$id?>">
+							 <div class="form-group">
+								<div class="col-xs-4 col-md-4">
 									<label for="quantity">Quantity</label>
-									<input type="text" class="form-control" id="quantity" name="quantity">
+									<input type="number" min = "0" class="form-control" id="quantity" name="quantity">
 								</div>
 								<div class="col-xs-6 col-md-6">
 									<label for="size">Size:</label>
@@ -52,8 +55,8 @@
 										<?php foreach ($sizeArray as $string) {
 											$string_array = explode(':', $string);
 											$size = $string_array[0];
-											$quantity = $string_array[1];
-											echo '<option value="'.$size.'">'.$size.' ('.$quantity.' Available)'.'</option>';
+											$available = $string_array[1];
+											echo '<option value="'.$size.'" data-available = "'.$available.'">'.$size.' ('.$available.' Available)'.'</option>';
 										} 
 										?>
 									</select>
@@ -66,9 +69,22 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-default" id="closebtn" data-dismiss="modal">Close</button>
-			<button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-shopping-cart"> Add to Cart</span></button>
+			<button class="btn btn-warning" onclick="add_to_cart();"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
 		</div>
 	</div>
 	</div>
 </div>
+<script>
+	//size is change
+	$('#size').change(function(){
+		//gets the no of available using html data attr
+		var available = $('#size option:selected').data('available');
+		//will be used in the footer
+		//sets the hidden input box eith the value
+		$('#available').val(available);
+
+	});
+	
+
+</script>
 <?php echo ob_get_clean(); ?>

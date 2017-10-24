@@ -4,7 +4,7 @@
 	$selected = (int)$_POST['selected'];
 	$childQuery = $db->query("SELECT * FROM categories WHERE parent  = '$parentID' ORDER BY category ");
 
-	ob_start();
+ob_start();
  ?>
 		<option value=""></option>
 		<?php while($child = mysqli_fetch_assoc($childQuery)): ?>

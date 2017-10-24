@@ -1,6 +1,7 @@
  body {
      margin: 0 auto;
      background-color: #FFFFFF;
+     position: relative;
  }
 
  .wrapper {
@@ -12,11 +13,43 @@
  .navbar {
      margin-bottom: 0;
      width: 100%;
+     position: fixed;
+     top: 0;
+     z-index: 5;
  }
+ /*index*/
 
  .img-fluid {
      max-width: 100%;
      height: 200px;
+ }
+ /*model index*/
+
+ img.details {
+     width: 90%;
+     margin: 0 auto;
+ }
+
+ #modal_errors, #modal_errors p {
+     padding: 0;
+     margin: 2px;
+ }
+ /*modal checkout*/
+
+ .modal-content {
+     z-index: 10;
+ }
+
+ #step1 {
+     display: block;
+ }
+
+ #step2 {
+     display: none;
+ }
+
+ #checkoutbtn, #back {
+     display: none;
  }
 
  .deals {
@@ -24,8 +57,44 @@
      text-align: center;
  }
 
- .img-responsive {
-     margin: 0 auto;
+
+
+ #headerWrapper {
+     position: relative;
+     padding: 0;
+     margin-top: 52px;
+     margin-bottom: 0;
+     margin-left: auto;
+     margin-right: auto;
+     overflow: hidden;
+     height: 210px;
+     background-image: url(../images/headerlogo/background.png);
+     background-repeat: no-repeat;
+     background-size: 100% 700px;
+     background-position: top center;
+     background-attachment: fixed;
+ }
+
+ #logotext {
+     position: absolute;
+     width: 100%;
+     height: 180px;
+     background: url(../images/headerlogo/text.png) no-repeat center;
+     background-size: 70% 180px;
+     top: 50%;
+     margin-top: -90px;
+ }
+
+ .flash {
+     position: absolute;
+     top: 0px;
+     left: 0;
+     right: 0;
+     z-index: 30
+ }
+
+ .total-table-head th {
+     text-align: center;
  }
 
  footer {
@@ -36,6 +105,20 @@
      padding-top: 25px;
  }
  /* jssor slider loading skin spin css */
+
+ #jssor_1 {
+     position: relative;
+     margin-top: 52px;
+     margin-bottom: 0;
+     margin-left: auto;
+     margin-right: auto;
+     top: 0px;
+     left: 0px;
+     width: 980px;
+     height: 380px;
+     overflow: hidden;
+     visibility: hidden;
+ }
 
  .jssorl-009-spin img {
      animation-name: jssorl-009-spin;
@@ -100,15 +183,4 @@
  .jssora051.jssora051ds {
      opacity: .3;
      pointer-events: none;
- }
- /*admin*/
-
- .table-auto {
-     width: 0;
-     margin: 0 auto;
- }
-
- .img-fluid-admin {
-     max-width: 100%;
-     height: 200px;
  }

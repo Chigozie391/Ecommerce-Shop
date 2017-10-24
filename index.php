@@ -5,7 +5,7 @@
 	include 'includes/slider.php';
 	include 'includes/deals.php';
 
-	$sql ="SELECT * FROm products WHERE featured = 1";
+	$sql ="SELECT * FROM products WHERE featured = 1 AND deleted = 0";
 	$featured = $db->query($sql);
  ?>
 
@@ -23,10 +23,6 @@
 	    			<?php endwhile; ?>
     			</div>
     		</div>
-
-    	</div>
-   	</div>
-
 <?php 
 
 include 'includes/footer.php'; ?>

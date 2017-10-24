@@ -1,16 +1,34 @@
 <?php 
 	require_once '../core/init.php';
+		if(!is_logged_in()){
+		//returns false runs this function
+			login_error_redirect();
+	}
 	include 'includes/head.php';
 	include 'includes/navigation.php';
 
+
+
+
+	//if delete is clicked
+	if(isset($_GET['delete'])){
+		$delete_id = (int)$_GET['delete'];
+		$dQuery = $db->query("UPDATE products SET deleted = 1 WHERE id = '$delete_id'");
+		$_SESSION['success_flash'] = 'The Item has been Archived';
+		header('Location: products.php');
+	}
+
+
+
 	//if we clicked the edit or add product button it shows a form
 	$dbPath = '';
+		$saved_photo = '';
 	if(isset($_GET['add']) || isset($_GET['edit'])){
 	//stting up our parent select
 	$brandQuery= $db->query("SELECT * FROM brands");
 	$parentQuery = $db->query("SELECT * FROM categories WHERE parent = 0 ORDER BY category");
 
-	//gr=etting our post initail details
+	//gretting our post initail details
 	$title = ((isset($_POST['title']) && $_POST['title'] != '')? sanitize($_POST['title']): '');
 	$brand = ((isset($_POST['brand']) && !empty($_POST['brand']))? sanitize($_POST['brand']) : '');
 	$category = ((isset($_POST['child']) && !empty($_POST['child']))?sanitize($_POST['child']):'');
@@ -18,7 +36,7 @@
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')? sanitize($_POST['price']): '');
 	$description = ((isset($_POST['description']) && $_POST['description'] != '')? sanitize($_POST['description']): '');
 	$size = ((isset($_POST['size']) && $_POST['size'] != '')? sanitize($_POST['size']): '');
-	$saved_photo = '';
+
 	//for editing products
 	 if(isset($_GET['edit'])){
 	 	$edit_id = (int)$_GET['edit'];
@@ -48,8 +66,6 @@
 	 	$description = ((isset($_POST['description']) && $_POST['description'] != '')?sanitize($_POST['description']):$edit_product['description']);
 	 	$size = ((isset($_POST['size']) && $_POST['size'] != '')?sanitize($_POST['size']):$edit_product['sizes']);
 	 	$saved_photo = (($edit_product['image'] != '')?$edit_product['image']: '');
-	 	//if the image was not deleted before submitting
-	 	$dbPath = $saved_photo;
 
 	 }
 
@@ -76,7 +92,6 @@
 	//if submitted
 	if($_POST){
 		$errors = array();
-		
 		//form validation
 		$required = array('title', 'brand', 'price','parent','child','size','description');
 		forEach($required as $field){
@@ -85,7 +100,7 @@
 			break;
 		}
 	}
-
+	//if a has been uploaded
 	if(!empty($_FILES['photo']['size'])){
 		$photo = $_FILES['photo'];
 		$name = $photo['name'];
@@ -122,9 +137,15 @@
 		//name of the uploaded file
 		$uploadName = md5(microtime()).'.'.$fileExt;
 		//image path from database
-		$dbPath = '/shop/images/products/'.$uploadName;
 		$uploadPath = BASEURL.'images/products/'.$uploadName;
 		move_uploaded_file($tmpLoc, $uploadPath);
+
+		//during edit(bug fix)
+		if($saved_photo == ''){
+			$dbPath = '/shop/images/products/'.$uploadName;
+		}else{
+			$dbPath = $saved_photo;
+		}
 
 		$insertSql = "INSERT INTO products (`title`,`price`,`brand`,`categories`,`image`,`description`,`sizes`) 
 		VALUES ('$title','$price','$brand','$category','$dbPath','$description','$size')";
