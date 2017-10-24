@@ -1,0 +1,48 @@
+body {
+    position: relative;
+}
+
+
+.table-auto {
+    width: 0;
+    margin: 0 auto;
+}
+
+.img-fluid-admin {
+    max-width: 100%;
+    height: 200px;
+}
+
+#login-form {
+    width: 50%;
+    height: 60%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.6);
+    margin: 8% auto;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.add-user {
+    margin-top: 25px;
+}
+
+.flash {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #3D3D3D;
+    color: white;
+    margin-top: 10px;
+    padding-top: 25px;
+}
