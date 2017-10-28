@@ -29,10 +29,11 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div id="modal_errors" class= "bg-danger"></div>
-					<div class="col-sm-6">
-						<div class="center-block">
-							<img src="<?=$modal['image'];?>" class="details img-responsive">
-						</div>
+					<div class="col-sm-6 fotorama">
+						<?php $photos = explode(',', $modal['image']);
+						foreach($photos as $photo) :?>
+							<img src="<?=$photo;?>" class=" img-responsive">
+					<?php endforeach ?>
 					</div>
 					<div class="col-sm-6">
 						<h4>Details</h4>
@@ -56,8 +57,10 @@
 											$string_array = explode(':', $string);
 											$size = $string_array[0];
 											$available = $string_array[1];
-											echo '<option value="'.$size.'" data-available = "'.$available.'">'.$size.' ('.$available.' Available)'.'</option>';
-										} 
+												if($available > 0){
+													echo '<option value="'.$size.'" data-available = "'.$available.'">'.$size.' ('.$available.' Available)'.'</option>';
+												}
+											} 
 										?>
 									</select>
 								</div>
@@ -82,9 +85,11 @@
 		//will be used in the footer
 		//sets the hidden input box eith the value
 		$('#available').val(available);
-
+		
 	});
 	
-
+		$(function(){
+			$('.fotorama').fotorama({'loop':true,'autoplay':true});
+		});
 </script>
 <?php echo ob_get_clean(); ?>

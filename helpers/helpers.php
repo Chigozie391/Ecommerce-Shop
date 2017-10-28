@@ -69,4 +69,36 @@
 		$category =mysqli_fetch_assoc($query);
 		return $category;
 	}
+	//for details
+	function get_details($ids){
+		global $db;
+		$productQ = $db->query(
+		"SELECT p.id as 'id', p.title as 'title', c.id as 'cid', c.category as child, i.category as parent
+		FROM products p 
+		LEFT JOIN categories c ON p.categories = c.id
+		LEFT JOIN categories i ON c.parent = i.id 
+		WHERE p.id IN ({$ids}) ");
+		return $productQ;
+	}
+
+	function sizesToArray($string){
+		$sizesArray = explode(',',$string);
+		$returnArray = array();
+		foreach($sizesArray as $size){
+			$s = explode(':', $size);
+			$returnArray[] = array('size' => $s[0], 'quantity' => $s[1], 'threshold' => $s[2]);
+		}
+		return $returnArray;
+	}
+
+	function sizesToString($sizes){
+		$sizeString = '';
+		foreach($sizes as $size){
+			$sizeString .= $size['size'].':'.$size['quantity'].':'.$size['threshold'].',';
+		}
+
+		$trimmed = rtrim($sizeString,',');
+		return $trimmed; 
+	}
+
 ?>

@@ -8,8 +8,6 @@
 	$items = json_decode($result['items'], true);
 	$update_items = array();
 
-	$domain =($_SERVER['HTTP_HOST'] != '127.0.0.1')?'.'.$_SERVER['HTTP_HOST'] : false;
-
 
 	if($mode == 'removeone'){
 		foreach ($items as $item) {
@@ -37,6 +35,7 @@
 		$db->query("UPDATE carts SET items = '$json_updated' WHERE id = '$cart_id'");
 		$_SESSION['success_flash'] = 'Your shopping cart has been updated';
 	}
+	//unset cart
 	if(empty($update_items)){
 		$db->query("DELETE FROM carts WHERE id = '$cart_id'");
 		setcookie(CART_COOKIE,'',1,'/',$domain,false);

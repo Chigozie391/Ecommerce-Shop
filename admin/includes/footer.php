@@ -9,7 +9,7 @@
 		var sizeString = '';
 		for(var i = 1;i<=6;i++){
 			if($('#size'+i).val() != ''){
-				sizeString +=$('#size'+i).val() + ':' + $('#qty'+i).val() + ',';
+				sizeString +=$('#size'+i).val() + ':' + $('#qty'+i).val() + ':' + $('#threshold'+i).val() + ',';
 			}
 		}
 		$('#sizes').val(sizeString);
@@ -23,7 +23,6 @@
 		if(typeof selected === 'undefined'){
 			var selected = '';
 		}
-		console.log(selected);
 		$.ajax({
 			url:'/shop/admin/parsers/child_category.php',
 			type: 'POST',

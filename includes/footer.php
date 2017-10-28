@@ -32,8 +32,7 @@
  			data:data,
  			method:'POST',
  			success:function(){
- 				
-			load_cart();
+				load_cart();
 				setTimeout(function(){
 					$('.flash').fadeOut('slow');
 					$('.flash').remove();

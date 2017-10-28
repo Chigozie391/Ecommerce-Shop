@@ -13,7 +13,6 @@
 		'quantity' => $quantity);
 
 	//for the cookie
-	$domain =($_SERVER['HTTP_HOST'] != '127.0.0.1')? '.'.$_SERVER['HTTP_HOST'] : false;
 	$query = $db->query("SELECT * FROM products WHERE id = '$product_id'");
 	$product = mysqli_fetch_assoc($query);
 	$_SESSION['success_flash'] = $product['title'].' has been added to your cart.';

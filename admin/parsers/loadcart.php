@@ -4,10 +4,10 @@
 		$cartQ = $db->query("SELECT * FROM carts WHERE id = '$cart_id'");
 		$result = mysqli_fetch_assoc($cartQ);
 		$items = json_decode($result['items'],true);
+	}
 		$i = 1;
 		$grand_total = 0;
 		$item_count = 0;
-	}
 ob_start();
  
  ?>
@@ -108,32 +108,34 @@ ob_start();
 			      <div class="modal-body">
 			      	 <form action="thankyou.php" method="post" id= "payment-form">
 			      	<div class="row">
-			      
 						<div id="modal_errors" class= "bg-danger"></div>
+						<input type="hidden" name = "grand_total" value="<?=$grand_total?>">
+						<input type="hidden" name = "description" value="<?=$item_count.' item'.(($item_count>1)?'s':'').' from Dominique Store'?>">
+						<input type="hidden" name = "cart_id" value="<?=$cart_id ?>">
 				       		<div id= "step1">
 					       			<div class="form-group col-md-6">
-					       				<label for="full_name">Full Name: </label>
+					       				<label for="full_name">Full Name*: </label>
 					       				<input type="text" class="form-control" id="full_name" name="full_name">
 					       			</div>
 					       			<div class="form-group col-md-6">
-					       				<label for="email">Email: </label>
+					       				<label for="email">Email*: </label>
 					       				<input type="email" class="form-control" id="email" name="email">
 					       			</div>
 					       			<div class="form-group col-md-6">
-					       				<label for="address">Address: </label>
+					       				<label for="address">Address*: </label>
 					       				<input type="text" class="form-control" id="address" name="address">
 					       			</div>
 					       			<div class="form-group col-md-6">
-					       				<label for="state">State: </label>
+					       				<label for="state">State*: </label>
 					       				<input type="text" class="form-control" id="state" name="state">
 					       			</div>
 					       			<div class="form-group col-md-6">
-					       				<label for="number">Phone No: </label>
-					       				<input type="text" class="form-control" id="phone1" name="number">
+					       				<label for="number">Phone No*: </label>
+					       				<input type="text" class="form-control" id="phone1" name="phone1">
 					       			</div>
 					       			<div class="form-group col-md-6">
 					       				<label for="number">Phone No 2: </label>
-					       				<input type="text" class="form-control" id="phone2" name="number">
+					       				<input type="text" class="form-control" id="phone2" name="phone2">
 					       			</div>
 							</div>
 							<div id="step2">
@@ -170,13 +172,13 @@ ob_start();
 											</select>
 										</div>
 								</div>
+							</div>
 			      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        <button type="button" id="next" class="btn btn-primary" onclick="check_address();">Next >></button>
 				        <button type="button" id="back" class="btn btn-default" onclick="back_address();"><< Back</button>
 				        <button type="submit" id="checkoutbtn" class="btn btn-primary">Check Out</button>
 			      </div>
-			    </div>
 			</form>
 		</div>
 	</div>
@@ -211,7 +213,6 @@ ob_start();
 				if(data != 'passed'){
 					$('#modal_errors').html(data);
 				}
-
 				if(data == 'passed'){
 					$('#modal_errors').html('');
 					$('#step1').fadeOut('slow');

@@ -5,6 +5,7 @@ if(mysqli_connect_errno()){
 	echo 'Database Connection Failed with the following error: '.mysqli_connect_error();
 	die();
 }
+$domain =($_SERVER['HTTP_HOST'] != '127.0.0.1')?'.'.$_SERVER['HTTP_HOST'] : false;
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/shop/config.php';
 require_once BASEURL.'helpers/helpers.php';

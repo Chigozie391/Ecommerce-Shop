@@ -3,7 +3,7 @@
 	include 'includes/head.php';
 	include 'includes/navigation.php';
 	include 'includes/slider.php';
-	include 'includes/deals.php';
+	include 'includes/sidebar.php';
 
 	$sql ="SELECT * FROM products WHERE featured = 1 AND deleted = 0";
 	$featured = $db->query($sql);
@@ -16,7 +16,8 @@
     				<?php while ($product = mysqli_fetch_assoc($featured)): ?>
     					<div class="col-md-3 col-sm-4 text-center img-parent">
 	    					<h4><?=$product['title']?></h4>
-	    					<img src="<?=$product['image'] ?>" class="img-fluid" alt="<?=$product['title']?>">
+	    					<?php $photos = explode(',', $product['image']) ?>
+	    					<img src="<?=$photos[0]?>" class="img-fluid" alt="<?=$product['title']?>">
 	    					<p>Price: $<?=$product['price']?></p>
 	    						<button class="btn btn-sm btn-success" onclick="detailsModal(<?=$product['id']?>)">Details</button>
 	    			</div>

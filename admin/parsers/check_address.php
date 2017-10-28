@@ -12,7 +12,7 @@ $required = array(
 	'full_name' => 'Full Name',
 	'email' =>'Email',
 	'address' => 'Address',
-	'phone1' => 'Phone',
+	'phone1' => 'Phone Number',
 	'state' => 'State',
 );
 

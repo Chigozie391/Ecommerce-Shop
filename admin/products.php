@@ -8,8 +8,6 @@
 	include 'includes/navigation.php';
 
 
-
-
 	//if delete is clicked
 	if(isset($_GET['delete'])){
 		$delete_id = (int)$_GET['delete'];
@@ -22,7 +20,6 @@
 
 	//if we clicked the edit or add product button it shows a form
 	$dbPath = '';
-		$saved_photo = '';
 	if(isset($_GET['add']) || isset($_GET['edit'])){
 	//stting up our parent select
 	$brandQuery= $db->query("SELECT * FROM brands");
@@ -36,6 +33,7 @@
 	$price = ((isset($_POST['price']) && $_POST['price'] != '')? sanitize($_POST['price']): '');
 	$description = ((isset($_POST['description']) && $_POST['description'] != '')? sanitize($_POST['description']): '');
 	$size = ((isset($_POST['size']) && $_POST['size'] != '')? sanitize($_POST['size']): '');
+	$saved_photo = '';
 
 	//for editing products
 	 if(isset($_GET['edit'])){
@@ -45,12 +43,17 @@
 
 	 	//prepaeing our image for delete
 	 	if(isset($_GET['delete_image'])){
-	 		$image_url = $_SERVER['DOCUMENT_ROOT'].$edit_product['image'];
+	 		$imgi = (int)$_GET['imgi']-1;
+	 		$images = explode(',', $edit_product['image']);
+	 		$image_url = $_SERVER['DOCUMENT_ROOT'].$images[$imgi];
 	 		//deletes the image from the folder
 	 		unlink($image_url);
-	 		$db->query("UPDATE products SET image = '' WHERE id = $edit_id");
+	 		//remove that from the image array
+	 		unset($images[$imgi]);
+	 		//glue tthe remaning with a comma
+	 		$imageString = implode(',', $images);
+	 		$db->query("UPDATE products SET image = '{$imageString}' WHERE id = $edit_id");
 	 		header('Location:products.php?edit='.$edit_id);
-
 	 	}
 
 	 	//overwritting our details for edit
@@ -67,7 +70,7 @@
 	 	$size = ((isset($_POST['size']) && $_POST['size'] != '')?sanitize($_POST['size']):$edit_product['sizes']);
 	 	$saved_photo = (($edit_product['image'] != '')?$edit_product['image']: '');
 
-	 }
+	}
 
 
 		//preparing our size and quantity to be remembered which is gotten from edit
@@ -77,10 +80,12 @@
 		$sizeArray = explode(',', $sizeString);
 		$sArray = array();
 		$qArray = array();
+		$tArray = array();
 		foreach ($sizeArray as $ss) {
 			$s = explode(':', $ss);
 			$sArray[] = $s[0];
 			$qArray[] = $s[1];
+			$tArray[] = $s[2];
 		}
 		}else{
 			//empty the array
@@ -94,38 +99,49 @@
 		$errors = array();
 		//form validation
 		$required = array('title', 'brand', 'price','parent','child','size','description');
+		$tmpLoc  =array();
+		$allowed = array('png','jpg','jpeg','gif');
+		$uploadPath = array();
 		forEach($required as $field){
 		if($_POST[$field] == ''){
 			$errors[] = 'All fields with asterisk are required';
 			break;
 		}
 	}
-	//if a has been uploaded
-	if(!empty($_FILES['photo']['size'])){
-		$photo = $_FILES['photo'];
-		$name = $photo['name'];
-		$nameArray = explode('.',$name);
-		$fileName = $nameArray[0];
-		$fileExt = $nameArray[1];
-		$mime = explode('/', $photo['type']);
-		$mimeType = $mime[0];
-		$mimeExt = $mime[1];
-		$tmpLoc = $photo['tmp_name'];
-		$tmpSize = $photo['size'];
-		$allowed = array('png','jpg','jpeg','gif');
-		
-		if($mimeType != 'image'){
-			$errors[] = 'The file must be an image';
 
-		}
-		if(!in_array($mimeExt, $allowed)){
-			$errors[] = 'The file extension must be an png, jpg, jpeg, or gif.';
-		}
-		if($tmpSize > 15000000){
-			$errors[] = 'The file must be under 15MB';
+	if (!empty($_FILES)){
+		$photoCount = count($_FILES['photo']['name']);
+		//multiple image
+	 	if($photoCount > 0){
+	 		for($i = 0; $i<$photoCount;$i++){
+		 		$name = $_FILES['photo']['name'][$i];
+				$nameArray = explode('.',$name);
+				$fileName = $nameArray[0];
+				$fileExt = $nameArray[1];
+		 		$mime = explode('/', $_FILES['photo']['type'][$i]);
+		 		$mimeType = $mime[0];
+		 		$mimeExt = $mime[1];
+				$tmpLoc[] = $_FILES['photo']['tmp_name'][$i];
+		 		$filesize = $_FILES['photo']['size'][$i];
+		 		$uploadName = md5(microtime().$i).'.'.$fileExt;
+		 		$uploadPath[] = BASEURL.'images/products/'.$uploadName;
+		 		if($i != 0){
+		 			$dbPath .= ',';
+		 		}
+		 		$dbPath .= '/shop/images/products/'.$uploadName;
+				if($mimeType != 'image'){
+					$errors[] = 'The file must be an image';
+
+				}
+				if(!in_array($mimeExt, $allowed)){
+					$errors[] = 'The file extension must be an png, jpg, jpeg, or gif.';
+				}
+				if($filesize > 15000000){
+					$errors[] = 'The file must be under 15MB';
+				}
+			}
 		}
 	}
-
 
 	if(!empty($errors)){
 		echo display_errors($errors);
@@ -133,18 +149,10 @@
 		//upload files and update the database
 		$size = rtrim($size,',');
 
-
-		//name of the uploaded file
-		$uploadName = md5(microtime()).'.'.$fileExt;
-		//image path from database
-		$uploadPath = BASEURL.'images/products/'.$uploadName;
-		move_uploaded_file($tmpLoc, $uploadPath);
-
-		//during edit(bug fix)
-		if($saved_photo == ''){
-			$dbPath = '/shop/images/products/'.$uploadName;
-		}else{
-			$dbPath = $saved_photo;
+		if($photoCount > 0){
+			for($i = 0; $i < $photoCount; $i++){
+				move_uploaded_file($tmpLoc[$i], $uploadPath[$i]);
+			}
 		}
 
 		$insertSql = "INSERT INTO products (`title`,`price`,`brand`,`categories`,`image`,`description`,`sizes`) 
@@ -152,21 +160,22 @@
 
 		//for edit,we redefine our sql
 		if(isset($_GET['edit'])){
+			if ($dbPath == ''){
+				$dbPath = $saved_photo;
+			}
 			$insertSql = "UPDATE products SET title = '$title',price = '$price',brand = '$brand',categories = '$category',
 			image = '$dbPath',description = '$description',sizes = '$size' WHERE id = '$edit_id'";
 		}
 		$db->query($insertSql);
 		header('Location:products.php');
-}
-
-
+   }
 
 }
 
 
 ?>
 <h4 class="text-center"><?=((isset($_GET['edit']))?'Edit ':'Add A ') ?>Product</h4><hr>
-	<?php ;?>
+
 	<form action="products.php?<?=((isset($_GET['edit']))?'edit='.$edit_id: 'add=1') ?>" method="POST" enctype="multipart/form-data">	
 	<div class="col-md-3 col-sm-3 form-group">
 		<label for="title">Title*:</label>
@@ -212,12 +221,21 @@
 		<input  readonly class="form-control" type="text" name= "size" id="sizes" value="<?=$size?>">
 	</div>
 	<div class="form-group col-md-6 col-sm-6">
-		<label for="photo">Photo*:</label>
-		<input type="file" class="form-control" id="photo" name="photo">
 		<?php if($saved_photo != ''): ?>
-			<div ><img src="<?=$saved_photo?>" alt="saved_photo" class="img-fluid-admin"><br>
-				<a href="products.php?delete_image=1&edit=<?=$edit_id ?>" class="text-danger">Delete Image</a>
+		<?php 
+			$imgi = 1;
+			$images = explode(',', $saved_photo);
+		?>
+		<?php foreach($images as $image):?>
+			<div class="col-md-4 saved_photo">
+				<img src="<?=$image?>" alt="saved_photo" class="img-fluid-admin"><br>
+				<a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class="text-danger">Delete Image</a>
 			</div>
+			<?php $imgi++ ?>
+		<?php endforeach; ?>
+			<?php else: ?>
+			<label for="photo">Photo*:</label>
+		<input type="file" class="form-control" id="photo" name="photo[]" multiple>
 		<?php endif ?>
 	</div>
 	<div class="form-group col-md-6 col-sm-6">
@@ -242,13 +260,17 @@
       <div class="modal-body">
       	<div class="container-fluid">
         <?php for($i = 1;$i<=6; $i++) :?>
-		<div class="form-group col-md-4 col-sm-4">
+		<div class="form-group col-md-2 col-sm-2">
 			<label for="size<?=$i?>">Size:</label>
 			<input type="text" name="size<?=$i?>" id="size<?=$i?>" class = "form-control" value="<?=((!empty($sArray[$i-1]))?$sArray[$i-1]:'') ?>">
 		</div>
 		<div class="form-group col-md-2 col-sm-2">
-			<label for="qty<?=$i?>">Quantity:</label>
+			<label for="threshold<?=$i?>">Quantity:</label>
 			<input type="number" name="qty<?=$i?>" id="qty<?=$i?>" min = "0" class="form-control" value ="<?=((!empty($qArray[$i-1]))?$qArray[$i-1]:'') ?>">
+		</div>
+		<div class="form-group col-md-2 col-sm-2">
+			<label for="qty<?=$i?>">Threshold:</label>
+			<input type="number" name="threshold<?=$i?>" id="threshold<?=$i?>" min = "0" class="form-control" value ="<?=((!empty($tArray[$i-1]))?$tArray[$i-1]:'') ?>">
 		</div>
         <?php endfor; ?>
       </div>
@@ -260,11 +282,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
 
 <?php
 	}
