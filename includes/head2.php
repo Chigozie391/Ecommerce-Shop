@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.js"></script>
+   <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 
 <body>

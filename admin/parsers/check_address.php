@@ -15,16 +15,21 @@ $required = array(
 	'phone1' => 'Phone Number',
 	'state' => 'State',
 );
-
+$i = 0;
 //check if all field are filled out
 foreach ($required as $f => $d) {
 	if(empty($_POST[$f]) || $_POST[$f] == ''){
 		$errors[] = $d.' is Required.';
+		$i = 1;
 	}
 }
-if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-	$errors[] = 'Please Enter a Valid Email.';
+
+if($i == 0){
+	if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+		$errors[] = 'Please Enter a Valid Email.';
+	}
 }
+
 
 if(!empty($errors)){
 	echo display_errors($errors);
@@ -32,4 +37,4 @@ if(!empty($errors)){
 	echo 'passed';
 }
 
- ?>
+?>

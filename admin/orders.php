@@ -15,6 +15,8 @@
 		header('Location: index.php');
 	}
 
+
+
 	$txn_id = sanitize((int)$_GET['txn_id']);
 	$txnQuery = $db->query("SELECT * FROM transaction WHERE id = '$txn_id'");
 	$txn = mysqli_fetch_assoc($txnQuery);
@@ -31,9 +33,8 @@
 	$ids = implode(',',$idArray);
 	
 
-	//
+	//gets product details product
 	$productQR = get_details($ids);
-
 
 	while($p = mysqli_fetch_assoc($productQR)){
 		foreach($items as $item){
@@ -45,7 +46,7 @@
 			}
 		}
 		//complete product details as array
-		$products[] = array_merge($x,$p); ;
+		$products[] = array_merge($x,$p);
 	}
 
  ?>
@@ -82,6 +83,14 @@
 						<td>Order Date</td>
 						<td><?=pretty_date($txn['txn_date']);?></td>
 					</tr>
+					<tr>
+						<td>Reference No</td>
+						<td><?=$txn['reference'];?></td>
+					</tr>
+					<tr>
+						<td>Receipt No</td>
+						<td><?=$txn['cart_id'];?></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -103,12 +112,6 @@
  	<a href="index.php" class="btn  btn-default">Cancel</a>
  	<a href="orders.php?complete=1&cart_id=<?=$cart_id?>" class="btn btn-primary ">Complete Order</a>
  </div>
-
-
-
-
-
-
 
 
  <?php include 'includes/footer.php'; ?>

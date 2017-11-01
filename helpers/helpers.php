@@ -15,6 +15,7 @@
 		return '$'.number_format($price,2);
 
 	}
+
 	//login function
 	function login($userID){
 		$_SESSION['SBUser'] = $userID;

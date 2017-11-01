@@ -20,7 +20,7 @@
 	<div id="login-form">
 		<?php 
 			if($_POST){
-				$query = $db->query("SELECT * FROM users WHERE email = '$email'");
+				$query = $db->query("SELECT * FROM users WHERE email = '$email' LIMIT 1");
 				$user = mysqli_fetch_assoc($query);
 				$userCount = mysqli_num_rows($query);
 				
@@ -29,7 +29,7 @@
 					$errors[] = "Email or Password is not correct";
 				}else{
 					if(!password_verify($password,$user['password'])){
-						$errors[] = "Email or Paord is not correct";
+						$errors[] = "Email or Password is not corrects";
 				   }
 				}
 				//check for errors

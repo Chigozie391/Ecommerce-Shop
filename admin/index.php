@@ -95,18 +95,6 @@ while ($product = mysqli_fetch_assoc($iQuery)){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
  <script>
 	setTimeout(function(){
 		$('.flash').fadeOut('slow');
