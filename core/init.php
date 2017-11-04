@@ -31,13 +31,13 @@ if(isset($_SESSION['SBUser'])){
 
 }
 		if(isset($_SESSION['success_flash'])){
-			echo "<div class='flash bg-success'><p class = 'text-center text-success'>".$_SESSION['success_flash']."</p></div>";
+			echo "<div class='flash bg-success green lighten-4'><p class = 'text-center text-success'>".$_SESSION['success_flash']."</p></div>";
 			unset($_SESSION['success_flash']);
 		}
 
 		//if its set
 		if(isset($_SESSION['error_flash'])){
-			echo "<div class=' flash bg-danger'><p class = 'text-center text-danger'>".$_SESSION['error_flash']."</p></div>";
+			echo "<div class=' flash bg-danger red lighten-4'><p class = 'text-center text-danger'>".$_SESSION['error_flash']."</p></div>";
 			unset($_SESSION['error_flash']);
 		}
 

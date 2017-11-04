@@ -4,24 +4,51 @@
      position: relative;
  }
 
+ input.form-control, .form-control {
+     font-size: 1.3rem;
+ }
+
+ #size {
+     text-transform: capitalize;
+ }
+
+ .btn {
+     font-size: 12px;
+ }
+
+ .navbar .dropdown-menu a {
+     font-size: 1.3rem;
+ }
+
  .wrapper {
-     max-width: 1200px;
-     margin-top: 50px;
-     margin-bottom: 50px;
+     margin-top: 20px;
  }
 
  .navbar {
-     margin-bottom: 0;
-     width: 100%;
-     position: fixed;
-     top: 0;
-     z-index: 5;
+     z-index: 2;
  }
  /*index*/
 
- .img-fluid {
+ .card {
+     max-width: 250px;
+     margin: 0 auto;
+ }
+
+ div.view {
+     border-radius: 5px;
+     transition: box-shadow ease-in .2s
+ }
+
+ div.view:hover {
+     box-shadow: -4px 4px 10px 5px rgba(0, 0, 0, 0.2),
+     4px 4px 10px 5px rgba(0, 0, 0, 0.2);
+ }
+
+
+ img.img-fluid {
      max-width: 100%;
      height: 200px;
+     border-radius: 5px;
  }
  /*model index*/
 
@@ -34,30 +61,48 @@
      padding: 0;
      margin: 2px;
  }
+
+ div.modal-footer, div.modal-header {
+     padding: 8px;
+ }
+
+ div.modal-header p {
+     margin: 0px;
+ }
  /*modal checkout*/
 
- .modal-content {
+ .modal-backdrop {
      z-index: 10;
  }
 
- #step1 {
-     display: block;
+ .modal-footer .btn+.btn {
+     margin-bottom: 6px;
  }
 
- #step2 {
-     display: none;
+ .modal {
+     z-index: 11;
+ }
+ /*cart*/
+
+ .cart-th th {
+     font-weight: 500;
+     color: #fff;
  }
 
- #checkoutbtn, #back {
-     display: none;
+
+ .checkout {
+     vertical-align: baseline;
  }
 
- .deals {
-     margin-top: 20px;
+ .total-table-head th {
      text-align: center;
  }
 
 
+
+ #checkoutbtn, #back {
+     display: none;
+ }
 
  #headerWrapper {
      position: relative;
@@ -92,21 +137,18 @@
      right: 0;
      z-index: 30
  }
+ /*sidebar*/
 
- .total-table-head th {
-     text-align: center;
+ .side-cart a {
+     font-size: 10px;
  }
 
  #widget td {
      font-size: 12px;
  }
 
- footer {
-     height: 50px;
-     background-color: #3D3D3D;
-     color: white;
-     margin-top: 10px;
-     padding-top: 25px;
+ table.deals {
+     cursor: pointer;
  }
  /* jssor slider loading skin spin css */
 
@@ -187,4 +229,9 @@
  .jssora051.jssora051ds {
      opacity: .3;
      pointer-events: none;
+ }
+
+ .paystackspin {
+     display: none;
+     z-index: 15;
  }

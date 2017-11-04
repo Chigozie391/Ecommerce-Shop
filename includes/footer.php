@@ -2,8 +2,9 @@
    	</div>
 
 <footer class="text-center">
-		&copy; 2017 Developed By Chigoziemadubuko@gmail.com
+		<?php include 'includes/footerdetails.php'; ?>
 </footer>
+
 <script>
 	function detailsModal(id){
 		var data = {'id': id};
@@ -31,12 +32,13 @@
  			url:'/shop/admin/parsers/update_cart.php',
  			data:data,
  			method:'POST',
- 			success:function(){
+ 			success:function(data){
 				load_cart();
 				setTimeout(function(){
 					$('.flash').fadeOut('slow');
 					$('.flash').remove();
 				},5000);
+					console.log(data);
  			},
  			error:function(){
  				alert('Something Went Wrong');
@@ -50,7 +52,7 @@
  			method:'GET',
  			success:function(data){
  				$('#cart-reload').remove();
- 				$('.container-fluid').append(data);
+ 				$('.cart-wrapper').append(data);
  			}
  		});
  	}
@@ -69,7 +71,7 @@
 		var data = $('#add_product_form').serialize();
 		
 		if(size == '' || quantity == '' || quantity == 0 ){
-			error +='<p class ="text-danger text-center">You must choose a size and quantity</p>';
+			error +='<p class ="text-danger red lighten-4 text-center">You must choose a size and quantity</p>';
 			$('#modal_errors').html(error);
 			return;
 

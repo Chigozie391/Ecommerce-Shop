@@ -49,6 +49,7 @@ if($cart_id != ''){
 		//merge the new and the old so they can have the same id
 		$new_items = array_merge($item,$previous_item);
 	}
+	
 	$items_json = json_encode($new_items);
 	$cart_expire = date('Y-m-d H:i:s',strtotime('+30 days'));
 	$db->query("UPDATE carts SET items = '$items_json', expire_date = '$cart_expire' WHERE id = '$cart_id'");

@@ -41,4 +41,4 @@ $squery = $db->query($sql);
         </div>
 </div>
 
-    <div class="container-fluid wrapper">
+    <div class="container wrapper">

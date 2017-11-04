@@ -3,4 +3,4 @@
 	<div id="logotext"></div>
 	<div id="for-flower"></div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid cart-wrapper wrapper">

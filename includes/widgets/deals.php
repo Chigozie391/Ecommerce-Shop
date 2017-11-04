@@ -24,14 +24,14 @@
 	}
 	?>
 	<div>
-		<table class="table table-condensed" id='widget'>
+		<table class="table table-condensed table-hover deals" id='widget'>
 			<tbody>
 				<?php foreach($used_ids as $id): 
 				$productQ = $db->query("SELECT id,title FROM products WHERE id = '$id'");
 				$product = mysqli_fetch_assoc($productQ); ?>
-				<tr>
+				<tr onclick ="detailsModal('<?=$product['id']?>')" >
 					<td><?=substr($product['title'],0,15); ?></td>
-					<td><a onclick ="detailsModal('<?=$product['id']?>')" class="text-primary">View</a> </td>
+					<td>View</td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

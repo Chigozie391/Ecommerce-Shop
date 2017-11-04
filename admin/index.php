@@ -55,6 +55,7 @@ while ($product = mysqli_fetch_assoc($iQuery)){
 	foreach($sizes as $size){
 		if($size['quantity'] <= $size['threshold']){
 			$cat = get_category($product['categories']);
+
 			$items = array(
 				'title' => $product['title'],
 				'size' => $size['size'],
@@ -81,11 +82,11 @@ while ($product = mysqli_fetch_assoc($iQuery)){
 		<tbody>
 			<?php foreach ($lowItems as $low): ?>
 			<tr >
-				<td <?=($low['quantity'] == 0)?'class = "bg-danger"' :''; ?> ><?=$low['title'];?></td>
-				<td <?=($low['quantity'] == 0)?'class = "bg-danger"' :''; ?> ><?=$low['category'];?></td>
-				<td <?=($low['quantity'] == 0)?'class = "bg-danger"' :''; ?> ><?=$low['size'];?></td>
-				<td <?=($low['quantity'] == 0)?'class = "bg-danger"' :''; ?>><?=($low['quantity'] =='')? 0 : $low['quantity'];?></td>
-				<td <?=($low['quantity'] == 0)?'class = "bg-danger"' :''; ?> ><?=$low['threshold'];?></td>
+				<td <?=($low['quantity'] <= 0)?'class = "bg-danger"' :''; ?> ><?=$low['title'];?></td>
+				<td <?=($low['quantity'] <= 0)?'class = "bg-danger"' :''; ?> ><?=$low['category'];?></td>
+				<td <?=($low['quantity'] <= 0)?'class = "bg-danger"' :''; ?> ><?=$low['size'];?></td>
+				<td <?=($low['quantity'] <= 0)?'class = "bg-danger"' :''; ?>><?=($low['quantity'] =='')? 0 : $low['quantity'];?></td>
+				<td <?=($low['quantity'] <= 0)?'class = "bg-danger"' :''; ?> ><?=$low['threshold'];?></td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
