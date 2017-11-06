@@ -4,12 +4,43 @@ if($cart_id != ''){
 	$cartQ = $db->query("SELECT * FROM carts WHERE id = '$cart_id'");
 	$result = mysqli_fetch_assoc($cartQ);
 	$items = json_decode($result['items'],true);
+	$updatedItems = array();
+	$error_flash = 0;
+
+//checking for item changes since last visit and removing them if any
+	foreach($items as  $item){
+		$product_id = $item['id'];
+		$productQ = $db->query("SELECT id,sizes FROM products WHERE id  = '$product_id'");
+		$count = mysqli_num_rows($productQ);
+		if($count > 0){
+			$product = mysqli_fetch_assoc($productQ);
+			$sArray = explode(',',$product['sizes']);
+			foreach($sArray as $sizeString){
+				$s = explode(':', $sizeString);
+					//comparing the size in products and the ones in the cart
+				if($item['size'] == $s[0] ){
+					$available = $s[1];
+					if($item['quantity'] > $available){
+						$item['quantity'] = 1;
+					}
+					$updatedItems[] = $item;
+				}
+			}
+		}else{
+			$error_flash++;
+
+		}
+	}
+	$item_json = json_encode($updatedItems);
+	$db->query("UPDATE carts SET items ='$item_json' WHERE id = '$cart_id'");
 }
 
 $grand_total = 0;
 $item_count = 0;
 ob_start();
-
+if($error_flash > 0 ){
+	$_SESSION['error_flash'] = "We ran out of stock on some items in your Carts since your last visit";
+}
 ?>
 <div id="cart-reload">
 	<div class="container-fluid">
@@ -22,76 +53,74 @@ ob_start();
 							Your Shopping Cart is empty
 						</p>
 					</div>
-				<?php else: ?>
-					<table class="table table-striped">
-						<thead class="mdb-color lighten-2 cart-th">
-
-							<th>Item</th>
-							<th>Price</th>
-							<th>Quantity</th>
-							<th>Size</th>
-							<th>Sub-Total</th>
-						</thead>
-						<tbody>
-							<?php 
-							foreach($items as $item){
-								$product_id = $item['id'];
+				</div>
+			</div>
+		<?php else: ?>
+			<?php foreach($updatedItems as $uitem){
+				$up_id = $uitem['id'];
 						//from products table
-								$productQ = $db->query("SELECT * FROM products WHERE id  = '$product_id'");
-								//checks if the item exist
-								$count = mysqli_num_rows($productQ);
-								if($count == 0){
-									continue;
-								}
+				$uproductQ = $db->query("SELECT * FROM products WHERE id  = '$up_id'");
+				$product =mysqli_fetch_assoc($uproductQ);
 
-								$product =mysqli_fetch_assoc($productQ);
-								$sArray = explode(',',$product['sizes']);
-								foreach($sArray as $sizeString){
-									$s = explode(':', $sizeString);
-							//comparing the size in products and the ones in the cart
-									if($s[0] == $item['size']){
-								//quantity
-										$available = $s[1];
-									}
-								}
-								?>
+				?>
+				<div class="row">
+
+					<div class="col-md-5 col-sm-4 my-2 cartimg">
+						<span class="delbtn">
+							<a onclick="update_cart('delete','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3"><span class="glyphicon glyphicon-trash"></span></a>
+						</span>
+						<?php $photos = explode(',', $product['image']) ?>
+						<img src="<?=$photos[0]?>" class="img-fluid center-block" alt="<?=$product['title']?>">
+					</div>
+
+					
+					<div class="col-md-4 col-sm-4 my-5">
+						<table class="table table-condensed tcart">
+							<tbody>
 								<tr>
-
-									<td>
-										<a onclick="update_cart('delete','<?=$product['id']?>','<?=$item['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3"><span class="glyphicon glyphicon-trash"></span></a>
-										<?=$product['title']?>
-									</td>
+									<td><b>Name:</b></td>
+									<td><?=$product['title'];?></td>
+								</tr>
+								<tr>
+									<td><b>Size:</b></td>
+									<td class="size"><?=$uitem['size'];?></td>
+								</tr>
+								<tr>
+									<td><b>Price:</b></td>
 									<td><?=money($product['price']);?></td>
+								</tr>
+								<tr>
+									<td><b>Quantity:</b></td>
 									<td>
-										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$item['size']?>')" class="btn yellow darken-2 btn-xs p-2"><span class="glyphicon glyphicon-minus"></span></a>
+										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2"><span class="glyphicon glyphicon-minus"></span></a>
 
-										<span class ="mx-3"><b><?=$item['quantity']?></b></span>
+										<span class ="mx-3"><b><?=$uitem['quantity']?></b></span>
 
-										<?php if($item['quantity'] < $available) :?>
-											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$item['size']?>')" class="btn green lighten-2 btn-xs p-2"><span class="glyphicon glyphicon-plus"></span></a>
+										<?php if($uitem['quantity'] < $available) :?>
+											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2"><span class="glyphicon glyphicon-plus"></span></a>
 										<?php else: ?>
 											<span class="text-danger"> Max</span>
 										<?php endif; ?>
 									</td>
-									<td id="size"><?=$item['size']?></td>
-									<td><?=money($item['quantity'] * $product['price']) ?></td>
 								</tr>
-
-								<?php 
-
-								$item_count +=$item['quantity'];
-								$grand_total += ($item['quantity'] * $product['price'] );
-							}
-							?>
-
-						</tbody>
-					</table>
+								<tr>
+									<td><b class="text-danger">Subtotal:</b></td>
+									<td class=" green lighten-5"><b><?=money($uitem['quantity'] * $product['price']);?></b></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+				<?php
+				$item_count +=$uitem['quantity'];
+				$grand_total += ($uitem['quantity'] * $product['price']);
+				
+			} ?>
+
 			<div class="row">
 
 				<div class="col-md-12 col-sm-12">
-					<h3 class="h3-responsive">Totals</h3>
+					<h3 class="h3-responsive mt-0">Totals</h3>
 					<div class="row">
 						<div class="col-md-8">	
 							<table class="table table-condensed table-bordered text-right">
@@ -170,8 +199,7 @@ ob_start();
 		</div>
 	</div>
 
-
-<?php 
+	<?php 
 
 endif;
 echo ob_get_clean();

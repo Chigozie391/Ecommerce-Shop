@@ -8,7 +8,7 @@
      font-size: 1.3rem;
  }
 
- #size {
+ table, select {
      text-transform: capitalize;
  }
 
@@ -84,24 +84,18 @@
  }
  /*cart*/
 
- .cart-th th {
-     font-weight: 500;
-     color: #fff;
+ .tcart td {
+     font-weight: 400;
  }
 
-
- .checkout {
-     vertical-align: baseline;
+ .cartimg {
+     position: relative;
  }
 
- .total-table-head th {
-     text-align: center;
- }
-
-
-
- #checkoutbtn, #back {
-     display: none;
+ .delbtn {
+     position: absolute;
+     top: 0;
+     left: 20px;
  }
 
  #headerWrapper {

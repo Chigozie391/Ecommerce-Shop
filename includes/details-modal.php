@@ -40,7 +40,7 @@ $sizeArray = explode(',', $sizeString);
 							<h4>Details</h4>
 							<p><?=nl2br($modal['description']);?></p>
 							<hr>
-							<p>Price:$<?=$modal['price'];?></p>
+							<p>Price: &#8358;<?=$modal['price'];?></p>
 							<p>Brand: <?=$brand['brand'];?></p>
 							<form action="add_cart.php" method="post" id = "add_product_form">
 								<input type="hidden" id="available" name="available" value="">

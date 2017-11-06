@@ -41,7 +41,7 @@ $featured = $db->query($sql);
 
 						<!--Card footer-->
 						<div class="card-footer">
-							<div class="mt-4"><p>Price: $<?=$product['price']?></p></div>
+							<div class="mt-4"><p>Price: &#8358;<?=$product['price']?></p></div>
 							<div class="pb-3">
 								<button type="button" class="btn mb-2 btn-success " onclick="detailsModal(<?=$product['id']?>)">Details</button>
 							</div>

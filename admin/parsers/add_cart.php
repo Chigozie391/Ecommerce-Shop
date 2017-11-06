@@ -28,7 +28,7 @@ if($cart_id != ''){
 	//for adding new items
 	$new_items = array();
 	foreach($previous_item as $pitem){
-		//if the id on the present items is equal to id of the previous one and size aso match
+		//if the id on the present items is equal to id of the previous one and size also match
 		if($item[0]['id'] == $pitem['id'] && $item[0]['size'] == $pitem['size']){
 			//add the quantity of the new one to present one(update the quantity)
 			$pitem['quantity'] =  $pitem['quantity'] + $item[0]['quantity'];

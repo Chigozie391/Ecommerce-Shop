@@ -29,10 +29,9 @@
 		    });
 		}
 
-
 		function payWithPaystack() {
 		    var grand_total = $('#grand_total').val();
-		    grand_total = parseInt(grand_total) * 100;
+		    grand_total = parseFloat(grand_total) * 100;
 		    var cart_id = $('#cart_id').val();
 		    var handler = PaystackPop.setup({
 		        key: 'pk_test_86d8e282e01b04726f1bb1a766016c1c789e0eb5',
