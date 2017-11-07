@@ -5,12 +5,14 @@
 	$size = sanitize($_POST['size']);
 	$available = sanitize($_POST['available']);
 	$quantity = sanitize($_POST['quantity']);
+	$price = $_POST['price'];
 	$item = array();
 	//multi-demensional array
 	$item[] = array(
 		'id'=>$product_id,
 		'size' => $size,
-		'quantity' => $quantity);
+		'quantity' => $quantity,
+		'price' => $price);
 
 	//for the cookie
 	$query = $db->query("SELECT * FROM products WHERE id = '$product_id'");

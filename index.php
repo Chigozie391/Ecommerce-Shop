@@ -63,7 +63,9 @@ $featured = $db->query($sql);
 <!--Section: Products v.2-->
 
 <?php 
-
+if(isset($_SESSION['myparser'])){
+	unset($_SESSION['myparser']);
+}
 include 'includes/footer.php'; ?>
 
 

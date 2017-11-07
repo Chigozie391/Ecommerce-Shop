@@ -42,9 +42,11 @@ $sizeArray = explode(',', $sizeString);
 							<hr>
 							<p>Price: &#8358;<?=$modal['price'];?></p>
 							<p>Brand: <?=$brand['brand'];?></p>
-							<form action="add_cart.php" method="post" id = "add_product_form">
+							<form action="add_cart.php" method="post" id = "add_to_cart_form">
 								<input type="hidden" id="available" name="available" value="">
+								<input type="hidden" id="price" name="price" value="<?=$modal['price'];?>">
 								<input type="hidden" id="product_id" name = "product_id" value = "<?=$id?>">
+
 								<div class="form-group">
 									<div class="col-xs-4 col-md-4">
 										<label for="quantity">Quantity</label>

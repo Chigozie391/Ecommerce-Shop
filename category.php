@@ -98,6 +98,9 @@ $category = get_category($cat_id);
 
 
 <?php 
+if(isset($_SESSION['myparser'])){
+	unset($_SESSION['myparser']);
+}
 include 'includes/footer.php'; ?>
 
 

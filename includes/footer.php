@@ -1,4 +1,4 @@
-    	</div>
+</div>    
    	</div>
 
 <footer class="text-center">
@@ -38,7 +38,6 @@
 					$('.flash').fadeOut('slow');
 					$('.flash').remove();
 				},5000);
-					console.log(data);
  			},
  			error:function(){
  				alert('Something Went Wrong');
@@ -68,8 +67,8 @@
 		available = parseInt(available);
 		var error = '';
 		//gets for data from the form
-		var data = $('#add_product_form').serialize();
-		
+		var data = $('#add_to_cart_form').serialize();
+		 
 		if(size == '' || quantity == '' || quantity == 0 ){
 			error +='<p class ="text-danger red lighten-4 text-center">You must choose a size and quantity</p>';
 			$('#modal_errors').html(error);

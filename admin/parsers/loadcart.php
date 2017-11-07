@@ -10,7 +10,7 @@ if($cart_id != ''){
 //checking for item changes since last visit and removing them if any
 	foreach($items as  $item){
 		$product_id = $item['id'];
-		$productQ = $db->query("SELECT id,sizes FROM products WHERE id  = '$product_id'");
+		$productQ = $db->query("SELECT id,sizes,price FROM products WHERE id  = '$product_id'");
 		$count = mysqli_num_rows($productQ);
 		if($count > 0){
 			$product = mysqli_fetch_assoc($productQ);
@@ -23,6 +23,9 @@ if($cart_id != ''){
 					if($item['quantity'] > $available){
 						$item['quantity'] = 1;
 					}
+					if($item['price'] != $product['price']){
+						$item['price'] = $product['price'];
+					}
 					$updatedItems[] = $item;
 				}
 			}
@@ -33,14 +36,14 @@ if($cart_id != ''){
 	}
 	$item_json = json_encode($updatedItems);
 	$db->query("UPDATE carts SET items ='$item_json' WHERE id = '$cart_id'");
+	if($error_flash > 0 ){
+		$_SESSION['error_flash'] = "We ran out of stock on some items in your Carts since your last visit";
+	}
 }
 
 $grand_total = 0;
 $item_count = 0;
 ob_start();
-if($error_flash > 0 ){
-	$_SESSION['error_flash'] = "We ran out of stock on some items in your Carts since your last visit";
-}
 ?>
 <div id="cart-reload">
 	<div class="container-fluid">
@@ -157,10 +160,9 @@ if($error_flash > 0 ){
 							<form action="thankyou.php" method="POST" id="payment-form" >
 
 								<div id="modal_errors" class= "bg-danger"></div>
-								<input type="hidden" id="grand_total" name = "grand_total" value="<?=$grand_total?>">
-								<input type="hidden" name = "description" value="<?=$item_count.' item'.(($item_count>1)?'s':'').' from Dominique Store'?>">
+								<input type="hidden" id="grand_total" name = "grand_total" value="<?=(int)$grand_total?>">
+								<input type="hidden"  id ="description" name = "description" value="<?=$item_count.' item'.(($item_count>1)?'s':'').' from Dominique Store'?>">
 								<input type="hidden" id="cart_id" name = "cart_id" value="<?=$cart_id ?>">
-								<input type="hidden" name = "response" id="response">
 								<div class="row">
 									<div class="form-group col-md-6">
 										<label for="full_name">Full Name*: </label>
@@ -203,6 +205,8 @@ if($error_flash > 0 ){
 
 endif;
 echo ob_get_clean();
-
+if(isset($_SESSION['myparser'])){
+	unset($_SESSION['myparser']);
+}
 ?>
 <!--SPin-->

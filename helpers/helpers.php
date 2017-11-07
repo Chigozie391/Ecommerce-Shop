@@ -74,11 +74,11 @@
 	function get_details($ids){
 		global $db;
 		$productQ = $db->query(
-		"SELECT p.id as 'id', p.title as 'title', c.id as 'cid', c.category as child, i.category as parent
+		"SELECT p.id as 'id', p.title as 'title',c.id as 'cid', c.category as child, i.category as parent
 		FROM products p 
 		LEFT JOIN categories c ON p.categories = c.id
 		LEFT JOIN categories i ON c.parent = i.id 
-		WHERE p.id IN ({$ids}) ");
+		WHERE p.id IN ({$ids})");
 		return $productQ;
 	}
 
