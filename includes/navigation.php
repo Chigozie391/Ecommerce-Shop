@@ -2,6 +2,7 @@
 $sql = "SELECT * FROM categories WHERE parent = 0";
 $pquery = $db->query($sql);
 
+
 ?>
 
 
@@ -16,7 +17,7 @@ $pquery = $db->query($sql);
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-				<a href="index.php" class="navbar-brand">Dominique's Store</a>
+			<a href="index.php" class="navbar-brand">Dominique's Store</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -33,12 +34,12 @@ $pquery = $db->query($sql);
 							<?php while($child = mysqli_fetch_assoc($cquery)) :
 							?>
 							<li><a href = "category.php?cat=<?=$child['id']?>"><?=$child['category'] ?></a></li>
-						<?php endwhile; ?>
-					</ul>
-				</li>
-			<?php endwhile; ?>
-			<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
-		</ul>
+							<?php endwhile; ?>
+						</ul>
+					</li>
+				<?php endwhile; ?>
+				<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart <span id="cqty" class="badge badge-pill green"><?=$cqty; ?></span></a></li>
+			</ul>
+		</div>
 	</div>
-</div>
 </nav>

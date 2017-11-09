@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default nav-fixed-top">
-		<div class="container">
+		<div class="container-fluid">
 			<a href="/shop/admin/index.php" class="navbar-brand">DashBoard</a>
 
 			<ul class="nav navbar-nav pull-right">
@@ -18,18 +18,7 @@
 						<li><a href="logout.php">Logout</a></li>
 					</ul>
 				 </li>
-				<!--
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle = "dropdown"><span class="caret"></span></a>
-						
-					<ul class ="dropdown-menu" role ="menu">
-					
-					<li><a href = "#"></a></li>
-			
-					</ul>
-				
-				</li>
-		-->
+				<li><a href="/shop/index.php">Visit SIte</a></li>
 			</ul>
 		</div>
 	</nav>

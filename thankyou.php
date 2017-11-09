@@ -7,7 +7,6 @@ include 'includes/headercat.php';
 if(isset($_SESSION['myparser'])){
 
 	$json = json_decode($_SESSION['myparser'],true);
-	$idArray = $json['id'];
 	$cart_id = $json['cart_id'];
 	$dQuery = $db->query("SELECT * FROM transaction WHERE cart_id = '$cart_id' LIMIT 1");
 	$details = mysqli_fetch_assoc($dQuery);

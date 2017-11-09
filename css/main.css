@@ -16,8 +16,24 @@
      font-size: 12px;
  }
 
+
+ .shadow-hov {
+     transition: box-shadow 0.55s;
+     box-shadow: 0;
+ }
+
+ .shadow-hov:hover {
+     transition: box-shadow 0.45s;
+     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+
  .navbar .dropdown-menu a {
      font-size: 1.3rem;
+ }
+
+ .badge {
+     border-radius: 10px;
+     margin-top: -3px;
  }
 
  .wrapper {

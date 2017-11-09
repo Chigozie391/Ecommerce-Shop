@@ -82,18 +82,20 @@ $sizeArray = explode(',', $sizeString);
 </div>
 </div>
 <script>
-	//size is change
-	$('#size').change(function(){
-		//gets the no of available using html data attr
-		var available = $('#size option:selected').data('available');
-		//will be used in the footer
-		//sets the hidden input box eith the value
-		$('#available').val(available);
-		
-	});
-	
-	$(function(){
-		$('.fotorama').fotorama({'loop':true,'autoplay':true});
-	});
+$(function() {
+
+    //size is change
+    $('#size').change(function() {
+        //gets the no of available using html data attr
+        var available = $('#size option:selected').data('available');
+        //will be used in the footer
+        //sets the hidden input box eith the value
+        $('#available').val(available);
+
+    });
+
+  $('.fotorama').fotorama({ 'loop': true, 'autoplay': true });
+
+});
 </script>
 <?php echo ob_get_clean(); ?>

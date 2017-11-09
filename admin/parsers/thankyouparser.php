@@ -1,6 +1,6 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'].'/shop/core/init.php';
-
+setcookie(CART_QUANTITY,'',1,'/',$domain,false);
 setcookie(CART_COOKIE,'',1,'/',$domain,false);
 		//get post data
 $full_name = sanitize($_POST['full_name']);
@@ -16,8 +16,6 @@ $reference = $_POST['reference'];
 
 
 
-$idArray = array();
-$productsArray = array();
 
 	//adjsut inventory
 	//update products after each purchase
@@ -29,8 +27,7 @@ foreach($cart as $c){
 	$newSizeArray = array();
 		//for updating our products table
 	$item_id = $c['id'];
-		//to store our ids
-	$idArray[] = $c['id'];
+
 	$productQ = $db->query("SELECT sizes FROM products WHERE id = '$item_id'");
 	$product = mysqli_fetch_assoc($productQ);
 		//function to get the sizes and quantity in array format
@@ -59,7 +56,6 @@ $db->query("UPDATE carts SET ordered  = 1 WHERE id = '$cart_id'");
 //}
 
 $detailsArray = array(
-	'id' => $idArray,
 	'cart_id' =>$cart_id
 );
 

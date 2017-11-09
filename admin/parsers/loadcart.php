@@ -6,6 +6,7 @@ if($cart_id != ''){
 	$items = json_decode($result['items'],true);
 	$updatedItems = array();
 	$error_flash = 0;
+	$cqty = 0;
 
 //checking for item changes since last visit and removing them if any
 	foreach($items as  $item){
@@ -20,6 +21,7 @@ if($cart_id != ''){
 					//comparing the size in products and the ones in the cart
 				if($item['size'] == $s[0] ){
 					$available = $s[1];
+					$item['available'] = $available;
 					if($item['quantity'] > $available){
 						$item['quantity'] = 1;
 					}
@@ -70,7 +72,7 @@ ob_start();
 
 					<div class="col-md-5 col-sm-4 my-2 cartimg">
 						<span class="delbtn">
-							<a onclick="update_cart('delete','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3"><span class="glyphicon glyphicon-trash"></span></a>
+							<a onclick="update_cart('delete','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3 shadow-hov"><span class="glyphicon glyphicon-trash"></span></a>
 						</span>
 						<?php $photos = explode(',', $product['image']) ?>
 						<img src="<?=$photos[0]?>" class="img-fluid center-block" alt="<?=$product['title']?>">
@@ -95,12 +97,12 @@ ob_start();
 								<tr>
 									<td><b>Quantity:</b></td>
 									<td>
-										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2"><span class="glyphicon glyphicon-minus"></span></a>
+										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2 shadow-hov"><span class="glyphicon glyphicon-minus"></span></a>
 
 										<span class ="mx-3"><b><?=$uitem['quantity']?></b></span>
 
-										<?php if($uitem['quantity'] < $available) :?>
-											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2"><span class="glyphicon glyphicon-plus"></span></a>
+										<?php if($uitem['quantity'] < $uitem['available']) :?>
+											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2 shadow-hov"><span class="glyphicon glyphicon-plus"></span></a>
 										<?php else: ?>
 											<span class="text-danger"> Max</span>
 										<?php endif; ?>
@@ -117,6 +119,7 @@ ob_start();
 				<?php
 				$item_count +=$uitem['quantity'];
 				$grand_total += ($uitem['quantity'] * $product['price']);
+				setcookie(CART_QUANTITY,$item_count,CART_QUANTITY_EXPIRE,'/',$domain,false);
 				
 			} ?>
 
@@ -210,3 +213,7 @@ if(isset($_SESSION['myparser'])){
 }
 ?>
 <!--SPin-->
+<script>
+	$('span.badge').html('<?=$item_count?>');
+</script>
+

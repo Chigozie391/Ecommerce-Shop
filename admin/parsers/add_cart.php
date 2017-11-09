@@ -12,12 +12,8 @@
 		'id'=>$product_id,
 		'size' => $size,
 		'quantity' => $quantity,
-		'price' => $price);
-
-	//for the cookie
-	$query = $db->query("SELECT * FROM products WHERE id = '$product_id'");
-	$product = mysqli_fetch_assoc($query);
-	$_SESSION['success_flash'] = $product['title'].' has been added to your cart.';
+		'price' => $price,
+		'available' =>$available);
 
 
 //check if the cart cookie exist (items is already in database) or we have some item in the cart

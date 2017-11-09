@@ -47,11 +47,15 @@
 	if (!empty($update_items)) {
 		$json_updated = json_encode($update_items);
 		$db->query("UPDATE carts SET items = '$json_updated' WHERE id = '$cart_id'");
-		$_SESSION['success_flash'] = 'Your shopping cart has been updated';
+		setcookie(CART_QUANTITY,$cqty,CART_QUANTITY_EXPIRE,'/',$domain,false);
 	}
 	//unset cart
 	if(empty($update_items)){
 		$db->query("DELETE FROM carts WHERE id = '$cart_id'");
 		setcookie(CART_COOKIE,'',1,'/',$domain,false);
+		setcookie(CART_QUANTITY,'',1,'/',$domain,false);
 	}
 	?>
+<script>
+	$('span.badge').html('<?=$cqty?>');
+</script>

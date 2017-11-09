@@ -32,7 +32,6 @@ function check_address() {
 function payWithPaystack() {
     var total = $('#grand_total').val();
     grand_total = parseInt(total * 100);
-    console.log(typeof grand_total);
     var cart_id = $('#cart_id').val();
     var full_name = $('#full_name').val();
     var phone1 = $('#phone1').val();

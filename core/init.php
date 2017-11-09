@@ -16,6 +16,10 @@ $cart_id = '';
 if(isset($_COOKIE[CART_COOKIE])){
 	$cart_id = sanitize($_COOKIE[CART_COOKIE]);
 }
+$cqty = '';
+if(isset($_COOKIE[CART_QUANTITY])){
+	$cqty = sanitize($_COOKIE[CART_QUANTITY]);
+}
 
 //gets the user name from the session
 if(isset($_SESSION['SBUser'])){
@@ -30,16 +34,16 @@ if(isset($_SESSION['SBUser'])){
 	}
 
 }
-		if(isset($_SESSION['success_flash'])){
-			echo "<div class='flash bg-success green lighten-4'><p class = 'text-center text-success'>".$_SESSION['success_flash']."</p></div>";
-			unset($_SESSION['success_flash']);
-		}
+if(isset($_SESSION['success_flash'])){
+	echo "<div class='flash bg-success green lighten-4'><p class = 'text-center text-success'>".$_SESSION['success_flash']."</p></div>";
+	unset($_SESSION['success_flash']);
+}
 
 		//if its set
-		if(isset($_SESSION['error_flash'])){
-			echo "<div class=' flash bg-danger red lighten-4'><p class = 'text-center text-danger'>".$_SESSION['error_flash']."</p></div>";
-			unset($_SESSION['error_flash']);
-		}
+if(isset($_SESSION['error_flash'])){
+	echo "<div class=' flash bg-danger red lighten-4'><p class = 'text-center text-danger'>".$_SESSION['error_flash']."</p></div>";
+	unset($_SESSION['error_flash']);
+}
 
-
- ?>
+ob_start();
+?>

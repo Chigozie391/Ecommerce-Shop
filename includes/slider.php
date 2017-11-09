@@ -1,10 +1,8 @@
+
 <?php 
 $sql = "SELECT * from slides WHERE slide = 1";
 $squery = $db->query($sql);
-
  ?>
-
-
 
 <!--slider-->
 	<div id="jssor_1">

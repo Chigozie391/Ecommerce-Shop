@@ -86,7 +86,12 @@
 				method:'POST',
 				data: data,
 				success: function(){
-					location.reload();
+						sidecarts();
+					$('.modal-backdrop').fadeOut(function(){
+						$('#details-modal').remove();
+						$('.modal-backdrop').remove();
+					});
+			
 				},
 				error: function(){
 					alert('Something went wrong');
@@ -94,12 +99,22 @@
 			});
 		}
 	}
+	function sidecarts(){
+ 		$.ajax({
+ 			url:'/shop/includes/widgets/side-carts.php',
+ 			method:'GET',
+ 			success:function(data){
+ 				$('div.side-cart').remove();
+ 				$('.cont-sidebar').append(data);
+ 				
+ 			},
+ 		});
+ 	}
 
 	setTimeout(function(){
 		$('.flash').fadeOut('slow');
 		$('.flash').remove();
 	},5000);
-
 </script>
 
 </body>

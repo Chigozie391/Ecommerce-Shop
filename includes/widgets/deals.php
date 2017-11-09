@@ -1,4 +1,4 @@
-	<h3 class="text-center">Popular Items</h3>
+	<h4 class="text-center h4-reponsive">Popular Items</h4>
 	<?php 
 	$transQ = $db->query("SELECT * FROM carts WHERE ordered = 1 ORDER BY id DESC LIMIT 10 ");
 	$results = array();
