@@ -38,7 +38,7 @@ $pquery = $db->query($sql);
 						</ul>
 					</li>
 				<?php endwhile; ?>
-				<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart <span id="cqty" class="badge badge-pill green"><?=$cqty; ?></span></a></li>
+				<li><a href="cart.php"><i class="fa fa-shopping-cart"></i><b> Cart </b><span id="cqty" class="badge badge-pill red"><?=$cqty; ?></span></a></li>
 			</ul>
 		</div>
 	</div>

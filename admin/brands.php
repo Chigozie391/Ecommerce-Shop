@@ -92,9 +92,9 @@
 			<?php while($brand = mysqli_fetch_assoc($result)) :?>
 		<tr>
 
-			<td><a href="brands.php?edit=<?=$brand['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a></td>
+			<td><a href="brands.php?edit=<?=$brand['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a></td>
 			<td><a href=""></a><?=$brand['brand'];?></td>
-			<td><a href="brands.php?delete=<?=$brand['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a></td>
+			<td><a href="brands.php?delete=<?=$brand['id']?>" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a></td>
 		</tr>
 	<?php endwhile; ?>
 	</tbody>

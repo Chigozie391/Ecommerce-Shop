@@ -140,7 +140,7 @@
 				<?php 
 				//don not show delete on the user that is logged in
 				if($user['id'] != $userData['id']): ?>
-				<a href="users.php?delete=<?=$user['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+				<a href="users.php?delete=<?=$user['id']?>" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 				<?php endif; ?>
 			</td>
 			<td><?=$user['full_name'] ?></td>

@@ -13,12 +13,20 @@ body {
     height: 200px;
 }
 
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+    max-height: 600px !important;
+}
+
 .saved-image {
     text-align: center;
 }
 
 .table {
     text-transform: capitalize;
+}
+
+i.fa {
+    font-size: 15px;
 }
 
 .order-details {

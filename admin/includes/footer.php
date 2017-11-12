@@ -40,9 +40,7 @@
 		get_child_options();
 	});
 
-	setTimeout(function(){
-			$('.flash').fadeOut('slow');
-		},3000);
+	
 </script>
 
 

@@ -82,22 +82,28 @@
 
 <div class="row">
 	<div class="col-md-6 col-sm-6">
-	<table class="table  table-striped table-bordered">
+	<table class="table  table-striped table-bordered table-condensed">
 
 		<thead>
+			<th>#</th>
 			<th>Title</th>
-			<th>Operations</th>
+			<th>Controls</th>
 		</thead>
 		<tbody>
-			<?php while($slide = mysqli_fetch_assoc($squery)): ?>
+			<?php
+			$i = 1; 
+			while($slide = mysqli_fetch_assoc($squery)): ?>
 			<tr>
+				<td><?=$i;?></td>
 				<td><?=$slide['title']?></td>
 				<td>
-					<a href="sliders.php?slidetoggle=<?=(($slide['slide'] == 0)?'1':'0')?>&id=<?=$slide['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-<?=(($slide['slide'] == 1)?'minus': 'plus') ?>	"></span></a>
-					<a href="sliders.php?delete=<?=$slide['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+					<a href="sliders.php?slidetoggle=<?=(($slide['slide'] == 0)?'1':'0')?>&id=<?=$slide['id']?>" class="btn btn-xs btn-default"><i class="fa fa-<?=(($slide['slide'] == 1)?'minus': 'plus') ?>	"></i></a>
+					<a href="sliders.php?delete=<?=$slide['id']?>" class="btn btn-xs btn-default"><i class="fa fa-times"></i></a>
 				</td>
 			</tr>
-		<?php endwhile; ?>
+		<?php
+		$i++; 
+		 endwhile; ?>
 		</tbody>
 	</table>
 	</div>

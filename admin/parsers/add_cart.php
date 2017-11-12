@@ -1,21 +1,23 @@
 <?php 
-	require_once $_SERVER['DOCUMENT_ROOT'].'/shop/core/init.php';
-	$product_id = sanitize($_POST['product_id']);
-	$product_id = (int)$product_id;
-	$size = sanitize($_POST['size']);
-	$available = sanitize($_POST['available']);
-	$quantity = sanitize($_POST['quantity']);
-	$price = $_POST['price'];
-	$item = array();
+require_once $_SERVER['DOCUMENT_ROOT'].'/shop/core/init.php';
+$product_id = sanitize($_POST['product_id']);
+$product_id = (int)$product_id;
+$size = sanitize($_POST['size']);
+$available = sanitize($_POST['available']);
+$quantity = sanitize($_POST['quantity']);
+$price = $_POST['price'];
+$item = array();
 	//multi-demensional array
-	$item[] = array(
-		'id'=>$product_id,
-		'size' => $size,
-		'quantity' => $quantity,
-		'price' => $price,
-		'available' =>$available);
+$item[] = array(
+	'id'=>$product_id,
+	'size' => $size,
+	'quantity' => $quantity,
+	'price' => $price,
+	'available' =>$available);
 
-
+$query = $db->query("SELECT title FROM products WHERE id = '$product_id' LIMIT 1");
+$product = mysqli_fetch_assoc($query);
+$_SESSION['success_flash'] = $product['title'].' has been added to your Cart.';
 //check if the cart cookie exist (items is already in database) or we have some item in the cart
 if($cart_id != ''){
 	$cartQ = $db->query("SELECT * FROM carts WHERE id = '$cart_id'");
@@ -55,17 +57,19 @@ if($cart_id != ''){
 	setcookie(CART_COOKIE,'',1,'/',$domain,false);
 	setcookie(CART_COOKIE,$cart_id,CART_COOKIE_EXPIRE,'/',$domain,false);
 
- }else{
+}else{
  	//add cart to databse and set cookie
  	//convert array to json
- 	$items_json = json_encode($item);
- 	$cart_expire = date("Y-m-d H:i:s",strtotime("+30 days"));
- 	$db->query("INSERT INTO carts (items,expire_date) VALUES ('$items_json','$cart_expire')");
+	$items_json = json_encode($item);
+	$cart_expire = date("Y-m-d H:i:s",strtotime("+30 days"));
+	$db->query("INSERT INTO carts (items,expire_date) VALUES ('$items_json','$cart_expire')");
  	//for the client
  	//gets the id of the last insert item
- 	$cart_id = $db->insert_id;
+	$cart_id = $db->insert_id;
  	//seta the cokkie for the client
  	//NAME,VALUE,EXPIRE TIME,PATH,DOMAIN,SECURITY
- 	setcookie(CART_COOKIE,$cart_id,CART_COOKIE_EXPIRE,'/',$domain,false);
- }
+	setcookie(CART_COOKIE,$cart_id,CART_COOKIE_EXPIRE,'/',$domain,false);
+ 	//$_SESSION['success_flash'] = $product['title'].' has been added to your cart.'
+}
 ?>
+

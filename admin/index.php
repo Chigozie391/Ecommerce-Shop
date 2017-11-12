@@ -8,6 +8,7 @@
 	}
 	include 'includes/head.php';
 	include 'includes/navigation.php'; 
+
  ?>
 <?php 
 	$txnQuery = "SELECT t.id,t.cart_id,t.full_name,t.description,t.txn_date,t.grand_total,c.items,c.ordered,c.shipped 

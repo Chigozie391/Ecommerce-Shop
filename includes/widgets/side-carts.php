@@ -1,9 +1,9 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/shop/core/init.php'; ?>
 
 
-<div class="side-cart">
+<div class="side-cart ">
 	<div class="reloadside"> 
-		<h4 class="text-center h4-responsive">Shopping Cart</h4>
+		<h4 class="text-center h4-responsive text-primary">Shopping Cart</h4>
 		<?php if(empty($cart_id)): ?>
 			<p class="text-center">Your Cart is empty.</p>
 		<?php else: 

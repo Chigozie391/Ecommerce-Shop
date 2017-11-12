@@ -1,7 +1,6 @@
  body {
      margin: 0 auto;
      background-color: #FFFFFF;
-     position: relative;
  }
 
  input.form-control, .form-control {
@@ -11,11 +10,11 @@
  table, select {
      text-transform: capitalize;
  }
+ /*btn*/
 
  .btn {
      font-size: 12px;
  }
-
 
  .shadow-hov {
      transition: box-shadow 0.55s;
@@ -26,6 +25,23 @@
      transition: box-shadow 0.45s;
      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  }
+ /*toast*/
+
+ #toast-container>div {
+     top: 45px;
+     opacity: 0.8;
+     border-radius: 0;
+     box-shadow: 0 0 8px #999;
+ }
+
+ #toast-container>div:hover {
+     box-shadow: 0 0px 8px #999;
+ }
+
+ .toast-success {
+     background-color: #00BC4B;
+ }
+ /*nav*/
 
  .navbar .dropdown-menu a {
      font-size: 1.3rem;
@@ -43,12 +59,46 @@
  .navbar {
      z-index: 2;
  }
- /*index*/
+
+ .fa-shopping-cart, .fa-cart-plus {
+     font-size: 18px !important;
+ }
+
+ .fa-trash-o {
+     font-size: 15px !important;
+ }
+ /*carousel*/
+
+ .carousel-control {
+     text-shadow: none;
+     background-color: none;
+ }
+
+ .carousel-control:hover {
+     opacity: 0.9;
+     text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+     background-color: rgba(0, 0, 0, 0);
+ }
+
+
+ img.img-index {
+     width: 100%;
+ }
+
+ #my-carousel {
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 50px;
+     max-width: 1250px;
+     max-height: 450px;
+     overflow: hidden;
+ }
 
  .card {
      max-width: 250px;
      margin: 0 auto;
  }
+ /*index*/
 
  div.view {
      border-radius: 5px;
@@ -98,11 +148,33 @@
  .modal {
      z-index: 11;
  }
- /*cart*/
+
+ .gly-cart {
+     font-size: 20rem;
+     color: #eee;
+ }
+ /*sidebar*/
+
+ .cont-sidebar {
+     background-color: rgba(161, 169, 173, 0.06);
+ }
 
  .tcart td {
      font-weight: 400;
  }
+
+ .side-cart a {
+     font-size: 10px;
+ }
+
+ #widget td {
+     font-size: 12px;
+ }
+
+ table.deals {
+     cursor: pointer;
+ }
+ /*cart*/
 
  .cartimg {
      position: relative;
@@ -139,42 +211,8 @@
      top: 50%;
      margin-top: -90px;
  }
-
- .flash {
-     position: absolute;
-     top: 0px;
-     left: 0;
-     right: 0;
-     z-index: 30
- }
  /*sidebar*/
-
- .side-cart a {
-     font-size: 10px;
- }
-
- #widget td {
-     font-size: 12px;
- }
-
- table.deals {
-     cursor: pointer;
- }
  /* jssor slider loading skin spin css */
-
- #jssor_1 {
-     position: relative;
-     margin-top: 52px;
-     margin-bottom: 0;
-     margin-left: auto;
-     margin-right: auto;
-     top: 0px;
-     left: 0px;
-     width: 980px;
-     height: 380px;
-     overflow: hidden;
-     visibility: hidden;
- }
 
  .jssorl-009-spin img {
      animation-name: jssorl-009-spin;
@@ -193,55 +231,15 @@
      }
  }
 
- .jssorb051 .i {
-     position: absolute;
-     cursor: pointer;
- }
-
- .jssorb051 .i .b {
-     fill: #fff;
-     fill-opacity: 0.5;
- }
-
- .jssorb051 .i:hover .b {
-     fill-opacity: .7;
- }
-
- .jssorb051 .iav .b {
-     fill-opacity: 1;
- }
-
- .jssorb051 .i.idn {
-     opacity: .3;
- }
-
- .jssora051 {
-     display: block;
-     position: absolute;
-     cursor: pointer;
- }
-
- .jssora051 .a {
-     fill: none;
-     stroke: #fff;
-     stroke-width: 360;
-     stroke-miterlimit: 10;
- }
-
- .jssora051:hover {
-     opacity: .8;
- }
-
- .jssora051.jssora051dn {
-     opacity: .5;
- }
-
- .jssora051.jssora051ds {
-     opacity: .3;
-     pointer-events: none;
- }
-
  .paystackspin {
      display: none;
      z-index: 15;
+ }
+
+
+
+ @media (min-width: 1200px) {
+     .container {
+         width: 1200px;
+     }
  }

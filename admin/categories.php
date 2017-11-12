@@ -137,8 +137,8 @@
 					<td><?=$parent['category'];?></td>
 					<td>Parent</td>
 					<td>
-						<a href="categories.php?edit=<?=$parent['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="categories.php?delete=<?=$parent['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+						<a href="categories.php?edit=<?=$parent['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+						<a href="categories.php?delete=<?=$parent['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-times"></i></a>
 
 					</td>
 				</tr> 
@@ -147,8 +147,8 @@
 					<td><?=$child['category'];?></td>
 					<td><?=$parent['category'];?></td>
 					<td>
-						<a href="categories.php?edit=<?=$child['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="categories.php?delete=<?=$child['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+						<a href="categories.php?edit=<?=$child['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+						<a href="categories.php?delete=<?=$child['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-times"></i></a>
 
 					</td>
 				</tr> 

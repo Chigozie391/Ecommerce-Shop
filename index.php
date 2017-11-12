@@ -11,9 +11,9 @@ $featured = $db->query($sql);
 
 <!--main Content -->
 <section class="col-md-9 col-sm-9 col-xs-12 ">
-
+<h2 class="text-center h2-responsive mb-4">Featured Products</h2>
 	<div class="row">
-		<h3 class="text-center h3-responsive">Featured Products</h3>
+		
 		<!--Grid column-->
 		<?php while ($product = mysqli_fetch_assoc($featured)): ?>
 		<div class="col-md-4 col-sm-4 col-xs-6 mb-r">

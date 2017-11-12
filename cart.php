@@ -1,6 +1,6 @@
 <?php 
 	require_once 'core/init.php';
-	include 'includes/head2.php';
+	include 'includes/head.php';
 	include 'includes/navigation.php';
 	include 'includes/headercat.php';
 ?>

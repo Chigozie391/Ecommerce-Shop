@@ -8,7 +8,7 @@ if($cart_id != ''){
 	$error_flash = 0;
 	$cqty = 0;
 
-//checking for item changes since last visit and removing them if any
+//checking for item changes since last visit and removing them if any 
 	foreach($items as  $item){
 		$product_id = $item['id'];
 		$productQ = $db->query("SELECT id,sizes,price FROM products WHERE id  = '$product_id'");
@@ -31,33 +31,33 @@ if($cart_id != ''){
 					$updatedItems[] = $item;
 				}
 			}
-		}else{
-			$error_flash++;
-
 		}
 	}
 	$item_json = json_encode($updatedItems);
 	$db->query("UPDATE carts SET items ='$item_json' WHERE id = '$cart_id'");
-	if($error_flash > 0 ){
-		$_SESSION['error_flash'] = "We ran out of stock on some items in your Carts since your last visit";
-	}
+	
 }
 
 $grand_total = 0;
 $item_count = 0;
 ob_start();
 ?>
+
 <div id="cart-reload">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<h3 class="text-center h3-responsive mt-0">My Shopping Cart</h3>
+				<h3 class=" h3-responsive mt-0 text-center">My Shopping Cart</h3>
 				<?php if($cart_id == ''): ?>
-					<div class="bg-danger red lighten-4">
-						<p class="text-center text-danger">
-							Your Shopping Cart is empty
-						</p>
+					<div class="text-center">
+						<i class="fa fa-cart-arrow-down gly-cart my-5"></i><br>
+						<span class="mb-5 text-danger lighten-4" >
+							There are currently no items in your shopping cart
+						</span><br>
+						<a href="index.php" class="btn btn-primary">Start Shopping</a>
 					</div>
+						
+					
 				</div>
 			</div>
 		<?php else: ?>
@@ -72,7 +72,7 @@ ob_start();
 
 					<div class="col-md-5 col-sm-4 my-2 cartimg">
 						<span class="delbtn">
-							<a onclick="update_cart('delete','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3 shadow-hov"><span class="glyphicon glyphicon-trash"></span></a>
+							<a onclick="update_cart('delete','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3 shadow-hov"><i class="fa fa-trash-o"></i></span></a>
 						</span>
 						<?php $photos = explode(',', $product['image']) ?>
 						<img src="<?=$photos[0]?>" class="img-fluid center-block" alt="<?=$product['title']?>">
@@ -97,12 +97,12 @@ ob_start();
 								<tr>
 									<td><b>Quantity:</b></td>
 									<td>
-										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2 shadow-hov"><span class="glyphicon glyphicon-minus"></span></a>
+										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2 shadow-hov"><i class="fa fa-plus"></i></a>
 
 										<span class ="mx-3"><b><?=$uitem['quantity']?></b></span>
 
 										<?php if($uitem['quantity'] < $uitem['available']) :?>
-											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2 shadow-hov"><span class="glyphicon glyphicon-plus"></span></a>
+											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2 shadow-hov"><i class="fa fa-minus"></i></a>
 										<?php else: ?>
 											<span class="text-danger"> Max</span>
 										<?php endif; ?>
@@ -144,7 +144,7 @@ ob_start();
 						</div>
 						<div class="col-md-4 text-right mt-4">
 							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#check-out-modal"><span class="glyphicon glyphicon-shopping-cart"></span> Check Out</button>
+							<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#check-out-modal"><i class="fa fa-shopping-cart"></i>  Check Out</button>
 						</div>
 					</div>
 				</div>

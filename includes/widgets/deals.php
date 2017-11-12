@@ -1,4 +1,4 @@
-	<h4 class="text-center h4-reponsive">Popular Items</h4>
+	
 	<?php 
 	$transQ = $db->query("SELECT * FROM carts WHERE ordered = 1 ORDER BY id DESC LIMIT 10 ");
 	$results = array();
@@ -23,11 +23,16 @@
 		}
 	}
 	?>
-	<div>
+	<div class="popular-item">
+		<h4 class="text-center h4-reponsive text-primary">Popular Items</h4>
 		<table class="table table-condensed table-hover deals" id='widget'>
 			<tbody>
 				<?php foreach($used_ids as $id): 
 				$productQ = $db->query("SELECT id,title FROM products WHERE id = '$id'");
+				$count = $productQ->num_rows;
+				if($count < 1){
+					continue;
+				}
 				$product = mysqli_fetch_assoc($productQ); ?>
 				<tr onclick ="detailsModal('<?=$product['id']?>')" >
 					<td><?=substr($product['title'],0,15); ?></td>

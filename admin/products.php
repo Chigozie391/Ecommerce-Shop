@@ -330,13 +330,13 @@
 		?>
 			<tr>
 				<td>
-					<a href="products.php?edit=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-					<a href="products.php?delete=<?=$product['id']?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove-sign"></span></a>
+					<a href="products.php?edit=<?=$product['id']?>" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+					<a href="products.php?delete=<?=$product['id']?>" class="btn btn-xs btn-default"><i class="fa fa-times"></i></a>
 				</td>
 				<td><?=$product['title']?></td>
 				<td><?=money($product['price'])?></td>
 				<td><?=$cate?></td>
-				<td><a href="products.php?featured=<?=(($product['featured'] == 0)?'1': '0');?>&id=<?=$product['id'];?>" ><span class="btn btn-xs btn-default glyphicon glyphicon-<?=(($product['featured'] == 1)?'minus':'plus');?>"></span></a>
+				<td><a href="products.php?featured=<?=(($product['featured'] == 0)?'1': '0');?>&id=<?=$product['id'];?>" ><i class="btn btn-xs btn-default fa fa-<?=(($product['featured'] == 1)?'minus':'plus');?>"></i></a>
 					<?=(($product['featured']==1)?'Featured':'') ?></td>
 				<td>0</td>
 			</tr>

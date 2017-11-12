@@ -54,8 +54,8 @@
 		 ?>
 		<tr>
 			<td>
-				<a href="archive.php?restore=<?=$archive['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-refresh"></span></a>
-				<a href="archive.php?delete=<?=$archive['id'];?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+				<a href="archive.php?restore=<?=$archive['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-refresh"></i></a>
+				<a href="archive.php?delete=<?=$archive['id'];?>" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 			</td>
 			<td><?=$archive['title']?></td>
 			<td><?=money($archive['price']);?></td>
