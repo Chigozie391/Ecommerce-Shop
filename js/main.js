@@ -110,3 +110,8 @@ function payWithPaystack() {
 
     handler.openIframe();
 }
+
+$(function() {
+
+
+});

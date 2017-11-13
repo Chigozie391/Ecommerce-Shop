@@ -97,12 +97,12 @@ ob_start();
 								<tr>
 									<td><b>Quantity:</b></td>
 									<td>
-										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2 shadow-hov"><i class="fa fa-plus"></i></a>
+										<a onclick="update_cart('removeone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn yellow darken-2 btn-xs p-2 mb-1 shadow-hov"><i class="fa fa-plus"></i></a>
 
 										<span class ="mx-3"><b><?=$uitem['quantity']?></b></span>
 
 										<?php if($uitem['quantity'] < $uitem['available']) :?>
-											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2 shadow-hov"><i class="fa fa-minus"></i></a>
+											<a onclick="update_cart('addone','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn green lighten-2 btn-xs p-2 mb-1 shadow-hov"><i class="fa fa-minus"></i></a>
 										<?php else: ?>
 											<span class="text-danger"> Max</span>
 										<?php endif; ?>

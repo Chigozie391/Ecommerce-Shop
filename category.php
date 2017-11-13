@@ -57,7 +57,7 @@ $category = get_category($cat_id);
 
 <h3 class="text-center h3-responsive mb-5"><?=$category['parent'].' - '.$category['child'];?></h3>
 <!--main Content -->
-<section class="col-md-9 col-sm-9 col-xs-12 pull-right pb-3">
+<section class="col-md-9 col-sm-12 col-xs-12 pull-right pb-3">
 
 	<div class="row">
 		<!--Grid column-->

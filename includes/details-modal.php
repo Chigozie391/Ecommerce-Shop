@@ -29,11 +29,13 @@ $sizeArray = explode(',', $sizeString);
 				<div class="container-fluid">
 					<div class="row">
 						<div id="modal_errors" class= "bg-danger"></div>
-						<div class="col-sm-6 fotorama">
-							<?php $photos = explode(',', $modal['image']);
-							foreach($photos as $photo) :?>
-							<img src="<?=$photo;?>" class=" img-responsive">
-						<?php endforeach ?>
+						<div class=" col-sm-6 callbacks_container">
+							<ul class="rslides" id="slider1">
+								<?php $photos = explode(',', $modal['image']);
+								foreach($photos as $photo) :?>
+								<li><img src="<?=$photo;?>" class=" img-responsive"></li>
+							<?php endforeach ?>
+						</ul>
 					</div>
 					<div class="col-sm-6">
 						<div class="px-4">
@@ -82,7 +84,7 @@ $sizeArray = explode(',', $sizeString);
 </div>
 </div>
 <script>
-$(function() {
+	$(function() {
 
     //size is change
     $('#size').change(function() {
@@ -94,8 +96,14 @@ $(function() {
 
     });
 
-  $('.fotorama').fotorama({ 'loop': true, 'autoplay': true });
-
+    $("#slider1").responsiveSlides({
+            auto: true,
+            nav: true,
+            speed: 500,
+            pause:true,
+            pauseControl:true,
+            namespace: "callbacks",
+        });
 });
 </script>
 <?php echo ob_get_clean(); ?>

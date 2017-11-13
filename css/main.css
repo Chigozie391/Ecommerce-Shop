@@ -3,6 +3,10 @@
      background-color: #FFFFFF;
  }
 
+ .container {
+     max-width: 1200px;
+ }
+
  input.form-control, .form-control {
      font-size: 1.3rem;
  }
@@ -18,7 +22,7 @@
 
  .shadow-hov {
      transition: box-shadow 0.55s;
-     box-shadow: 0;
+     box-shadow: none;
  }
 
  .shadow-hov:hover {
@@ -90,7 +94,6 @@
      margin-right: auto;
      margin-top: 50px;
      max-width: 1250px;
-     max-height: 450px;
      overflow: hidden;
  }
 
@@ -238,8 +241,79 @@
 
 
 
- @media (min-width: 1200px) {
-     .container {
-         width: 1200px;
+ @media screen and (max-width: 480px) {
+     #my-carousel {
+         max-height: 140px
      }
+     div.col-xs-6 {
+         width: 100%!important;
+     }
+ }
+
+ @media (min-width: 481px) and (max-width:768px) {
+     #my-carousel {
+         max-height: 232px
+     }
+ }
+
+ @media (min-width: 769px) and (max-width:1023px) {
+     #my-carousel {
+         max-height: 356px
+     }
+ }
+
+ @media screen and (min-width: 1024px) {
+
+     #my-carousel {
+         max-height: 484px;
+     }
+ }
+
+ .rslides {
+     position: relative;
+     list-style: none;
+     overflow: hidden;
+ }
+
+ .rslides li {
+     -webkit-backface-visibility: hidden;
+     position: absolute;
+     display: none;
+     left: 0;
+     top: 0;
+ }
+
+ .rslides li:first-child {
+     position: relative;
+     display: block;
+ }
+
+ .rslides img {
+     display: block;
+     border: 0;
+ }
+
+ .callbacks_nav {
+     position: absolute;
+     top: 52%;
+     left: 0;
+     opacity: 0.3;
+     z-index: 3;
+     text-indent: -9999px;
+     overflow: hidden;
+     text-decoration: none;
+     height: 61px;
+     width: 38px;
+     background: transparent url("themes.gif") no-repeat left top;
+     margin-top: -45px;
+ }
+
+ .callbacks_nav:hover {
+     opacity: 0.5;
+ }
+
+ .callbacks_nav.next {
+     left: auto;
+     background-position: right top;
+     right: 0;
  }

@@ -9,8 +9,10 @@ $sql ="SELECT * FROM products WHERE featured = 1 AND deleted = 0";
 $featured = $db->query($sql);
 ?>
 
+
+
 <!--main Content -->
-<section class="col-md-9 col-sm-9 col-xs-12 ">
+<section class="col-md-9 col-sm-12 col-xs-12 ">
 <h2 class="text-center h2-responsive mb-4">Featured Products</h2>
 	<div class="row">
 		
