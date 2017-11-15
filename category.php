@@ -71,7 +71,7 @@ $category = get_category($cat_id);
 					<div class="view overlay hm-white-slight" onclick="detailsModal(<?=$product['id']?>)">
 
 						<?php $photos = explode(',', $product['image']) ?>
-						<img src="<?=$photos[0]?>" class="img-fluid center-block" alt="<?=$product['title']?>">
+						<img src="<?=$photos[0]?>" class="img-fluid center-block imgthumb" alt="<?=$product['title']?>">
 						<a>
 							<div class="mask"></div>
 						</a>

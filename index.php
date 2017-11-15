@@ -27,7 +27,7 @@ $featured = $db->query($sql);
 					<div class="view overlay hm-white-slight" onclick="detailsModal(<?=$product['id']?>)">
 
 						<?php $photos = explode(',', $product['image']) ?>
-						<img src="<?=$photos[0]?>" class="img-fluid center-block" alt="<?=$product['title']?>">
+						<img src="<?=$photos[0]?>" class="img-fluid imgthumb" alt="<?=$product['title']?>">
 						<a>
 							<div class="mask"></div>
 						</a>
@@ -45,7 +45,7 @@ $featured = $db->query($sql);
 						<div class="card-footer">
 							<div class="mt-4"><p>Price: &#8358;<?=$product['price']?></p></div>
 							<div class="pb-3">
-								<button type="button" class="btn mb-2 btn-success " onclick="detailsModal(<?=$product['id']?>)">Details</button>
+								<button type="button" class="btn mb-2 btn-success" onclick="detailsModal(<?=$product['id']?>)">Details</button>
 							</div>
 						</div>
 

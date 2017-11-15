@@ -1,6 +1,3 @@
-<div id="headerWrapper">
-	<div id="back-flower"></div>
-	<div id="logotext"></div>
-	<div id="for-flower"></div>
-</div>
+<div id="headerWrapper" class="z-depth-3 mb-5">
+	</div>
 <div class="container cart-wrapper wrapper">

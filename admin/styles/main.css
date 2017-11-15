@@ -3,6 +3,10 @@ body {
     width: 100%;
 }
 
+.page-wrapper {
+    margin-top: 50px;
+}
+
 .table-auto {
     width: 0;
     margin: 0 auto;

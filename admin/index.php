@@ -20,7 +20,7 @@
 $txnResult = $db->query($txnQuery);
  ?>
 
-	<h3 class="text-center">Orders To Ship</h3>
+<h3 class="text-center">Orders To Ship</h3>
 <div class="col-md-12 col-sm-12 col-xs-12">
 	<table class="table table-condensed table-striped table-bordered">
 		<thead>

@@ -1,6 +1,6 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'].'/shop/core/init.php';
-include 'includes/head2.php';
+include 'includes/head.php';
 include 'includes/navigation.php';
 include 'includes/headercat.php';
 

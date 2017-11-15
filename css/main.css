@@ -1,6 +1,7 @@
  body {
      margin: 0 auto;
-     background-color: #FFFFFF;
+     background-color: #fefefe;
+     position: relative;
  }
 
  .container {
@@ -61,7 +62,7 @@
  }
 
  .navbar {
-     z-index: 2;
+     z-index: 10;
  }
 
  .fa-shopping-cart, .fa-cart-plus {
@@ -71,11 +72,10 @@
  .fa-trash-o {
      font-size: 15px !important;
  }
- /*carousel*/
+ /*carousel index*/
 
  .carousel-control {
      text-shadow: none;
-     background-color: none;
  }
 
  .carousel-control:hover {
@@ -97,26 +97,38 @@
      overflow: hidden;
  }
 
+ #slide {
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 50px;
+     max-width: 100%;
+ }
+ /*index*/
+
  .card {
      max-width: 250px;
      margin: 0 auto;
  }
- /*index*/
+
+ img.imgthumb {
+     width: 100%;
+     height: auto;
+ }
 
  div.view {
      border-radius: 5px;
-     transition: box-shadow ease-in .2s
+     height: 250px;
+     overflow: hidden;
+     transition: box-shadow 0.2s ease, -webkit-box-shadow 0.2s ease;
  }
 
  div.view:hover {
-     box-shadow: -4px 4px 10px 5px rgba(0, 0, 0, 0.2),
-     4px 4px 10px 5px rgba(0, 0, 0, 0.2);
+     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  }
 
 
  img.img-fluid {
      max-width: 100%;
-     height: 200px;
      border-radius: 5px;
  }
  /*model index*/
@@ -141,7 +153,7 @@
  /*modal checkout*/
 
  .modal-backdrop {
-     z-index: 10;
+     z-index: 12;
  }
 
  .modal-footer .btn+.btn {
@@ -149,10 +161,10 @@
  }
 
  .modal {
-     z-index: 11;
+     z-index: 14;
  }
 
- .gly-cart {
+ .icon-cart {
      font-size: 20rem;
      color: #eee;
  }
@@ -179,42 +191,51 @@
  }
  /*cart*/
 
+ .stripped:nth-of-type(odd) {
+     background-color: rgba(249, 249, 249, 1);
+ }
+
+ .tcart a {
+     color: #fff !important;
+     text-align: center;
+ }
+
  .cartimg {
-     position: relative;
+     max-height: 250px !important;
+ }
+
+ a.cart-slide-control {
+     background-image: none!important;
+     opacity: 1;
+     text-shadow: 0 1px 2px rgba(0, 0, 0, .6)
+ }
+
+ a.cart-slide-control:hover {
+     color: #23527c;
  }
 
  .delbtn {
      position: absolute;
      top: 0;
-     left: 20px;
+     left: 0;
+     z-index: 5;
  }
+ /*caetegory*/
 
  #headerWrapper {
-     position: relative;
      padding: 0;
      margin-top: 52px;
-     margin-bottom: 0;
      margin-left: auto;
      margin-right: auto;
      overflow: hidden;
-     height: 210px;
-     background-image: url(../images/headerlogo/background.png);
+     background-image: url(../images/headerlogo/catimg.jpg);
+     background-position: 50% 50%;
      background-repeat: no-repeat;
-     background-size: 100% 700px;
-     background-position: top center;
-     background-attachment: fixed;
+     background-size: 60%;
+     background-color: #fefefe;
+     border-bottom-left-radius: 30px;
+     border-bottom-right-radius: 30px;
  }
-
- #logotext {
-     position: absolute;
-     width: 100%;
-     height: 180px;
-     background: url(../images/headerlogo/text.png) no-repeat center;
-     background-size: 70% 180px;
-     top: 50%;
-     margin-top: -90px;
- }
- /*sidebar*/
  /* jssor slider loading skin spin css */
 
  .jssorl-009-spin img {
@@ -248,17 +269,26 @@
      div.col-xs-6 {
          width: 100%!important;
      }
+     #headerWrapper {
+         height: 100px
+     }
  }
 
  @media (min-width: 481px) and (max-width:768px) {
      #my-carousel {
          max-height: 232px
      }
+     #headerWrapper {
+         height: 135px;
+     }
  }
 
  @media (min-width: 769px) and (max-width:1023px) {
      #my-carousel {
          max-height: 356px
+     }
+     #headerWrapper {
+         height: 170px;
      }
  }
 
@@ -267,7 +297,11 @@
      #my-carousel {
          max-height: 484px;
      }
+     #headerWrapper {
+         height: 235px
+     }
  }
+
 
  .rslides {
      position: relative;
