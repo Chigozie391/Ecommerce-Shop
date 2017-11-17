@@ -8,12 +8,19 @@
      max-width: 1200px;
  }
 
- input.form-control, .form-control {
-     font-size: 1.3rem;
+ .scroll {
+     display: block;
+     overflow-y: auto;
+     -ms-overflow-style: -ms-autohiding-scrollbar;
  }
+
 
  table, select {
      text-transform: capitalize;
+ }
+
+ #size {
+     border-radius: 5px;
  }
  /*btn*/
 
@@ -84,16 +91,11 @@
      background-color: rgba(0, 0, 0, 0);
  }
 
-
- img.img-index {
-     width: 100%;
- }
-
  #my-carousel {
      margin-left: auto;
      margin-right: auto;
      margin-top: 50px;
-     max-width: 1250px;
+     width: 100%;
      overflow: hidden;
  }
 
@@ -104,6 +106,20 @@
      max-width: 100%;
  }
  /*index*/
+
+ .header {
+     padding: 5px;
+     color: #3F729B;
+ }
+
+ .header h2, h3 {
+     margin: 0;
+     font-weight: 400
+ }
+
+ img.img-index {
+     width: 100%;
+ }
 
  .card {
      max-width: 250px;
@@ -132,11 +148,6 @@
      border-radius: 5px;
  }
  /*model index*/
-
- .fotorama__img {
-     width: 90% !important;
-     margin: 0 auto;
- }
 
  #modal_errors, #modal_errors p {
      padding: 0;
@@ -170,9 +181,33 @@
  }
  /*sidebar*/
 
- .cont-sidebar {
-     background-color: rgba(161, 169, 173, 0.06);
+ .side-header {
+     background-color: #3F729B;
+     color: white;
+     padding: 7px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
  }
+
+ .side-table {
+     margin-top: 15px;
+     padding: 0 10px
+ }
+
+ .side-header h5 {
+     margin: 0;
+ }
+
+ .side-cart {
+     background-color: #f8f8f8d4;
+     border-radius: 5px;
+     padding: 5px 0;
+ }
+
+ .side-cart a {
+     font-size: 10px;
+ }
+
 
  .tcart td {
      font-weight: 400;
@@ -191,7 +226,7 @@
  }
  /*cart*/
 
- .stripped:nth-of-type(odd) {
+ .stripped {
      background-color: rgba(249, 249, 249, 1);
  }
 
@@ -260,70 +295,28 @@
      z-index: 15;
  }
 
-
-
- @media screen and (max-width: 480px) {
-     #my-carousel {
-         max-height: 140px
-     }
-     div.col-xs-6 {
-         width: 100%!important;
-     }
-     #headerWrapper {
-         height: 100px
-     }
- }
-
- @media (min-width: 481px) and (max-width:768px) {
-     #my-carousel {
-         max-height: 232px
-     }
-     #headerWrapper {
-         height: 135px;
-     }
- }
-
- @media (min-width: 769px) and (max-width:1023px) {
-     #my-carousel {
-         max-height: 356px
-     }
-     #headerWrapper {
-         height: 170px;
-     }
- }
-
- @media screen and (min-width: 1024px) {
-
-     #my-carousel {
-         max-height: 484px;
-     }
-     #headerWrapper {
-         height: 235px
-     }
- }
-
-
  .rslides {
      position: relative;
      list-style: none;
      overflow: hidden;
+     width: 100%;
+     padding: 0;
+     margin: 0;
  }
 
  .rslides li {
      -webkit-backface-visibility: hidden;
      position: absolute;
      display: none;
+     width: 100%;
      left: 0;
      top: 0;
  }
 
- .rslides li:first-child {
-     position: relative;
-     display: block;
- }
-
  .rslides img {
      display: block;
+     height: auto;
+     max-width: 100%;
      border: 0;
  }
 
@@ -350,4 +343,71 @@
      left: auto;
      background-position: right top;
      right: 0;
+ }
+
+
+ .rslides li:first-child {
+     position: relative;
+     display: block;
+     float: left;
+ }
+
+
+ @media screen and (max-width: 480px) {
+     #my-carousel {
+         max-height: 160px
+     }
+     .index.col-xs-6 {
+         width: 100%!important;
+     }
+     #headerWrapper {
+         height: 100px
+     }
+     .sidebar {
+         margin-top: 0!important;
+     }
+     .callbacks_container {
+         overflow: hidden;
+     }
+ }
+
+ @media (min-width: 481px) and (max-width:768px) {
+     #my-carousel {
+         max-height: 297px
+     }
+     #headerWrapper {
+         height: 135px;
+     }
+     .sidebar {
+         margin-top: 0!important;
+     }
+ }
+
+ @media (min-width: 769px) and (max-width:1024px) {
+     #my-carousel {
+         max-height: 297px
+     }
+     #headerWrapper {
+         height: 170px;
+     }
+     .sidebar {
+         margin-top: 0!important;
+     }
+ }
+
+ @media screen and (min-width: 1025px) {
+
+     #my-carousel {
+         max-height: 484px;
+     }
+     #headerWrapper {
+         height: 235px
+     }
+     .sidebar {
+         margin-top: 80px;
+     }
+     .callbacks_container {
+         max-height: 420px;
+         overflow: hidden;
+     }
  }

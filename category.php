@@ -9,9 +9,9 @@ if(isset(($_GET['cat']))){
 }
 
 $catID_arr = array();
-$getQuery = $db->query("SELECT id FROM categories WHERE parent != 0");
-while($get_check = mysqli_fetch_assoc($getQuery)){
-	$catID_arr[] = $get_check['id'];
+$catQuery = $db->query("SELECT id FROM categories WHERE parent != 0");
+while($cat_check = mysqli_fetch_assoc($catQuery)){
+	$catID_arr[] = $cat_check['id'];
 }
 if(!in_array($cat_id, $catID_arr)){
 	header('Location:index.php');
@@ -55,14 +55,15 @@ $productQ = $db->query($sql);
 $category = get_category($cat_id);
 ?>
 
-<h3 class="text-center h3-responsive mb-5"><?=$category['parent'].' - '.$category['child'];?></h3>
 <!--main Content -->
 <section class="col-md-9 col-sm-12 col-xs-12 pull-right pb-3">
-
+<div class="header my-4">
+	<h3 class="text-center h3-responsive "><?=$category['parent'].' - '.$category['child'];?></h3>
+</div>
 	<div class="row">
 		<!--Grid column-->
 		<?php while ($product = mysqli_fetch_assoc($productQ)): ?>
-			<div class="col-md-4 col-sm-4 col-xs-6 mb-r">
+			<div class="index col-md-4 col-sm-4 col-xs-6 mb-r">
 
 				<!--Card-->
 				<div class="card card-cascade wider">

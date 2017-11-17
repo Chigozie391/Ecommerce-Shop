@@ -47,7 +47,7 @@ ob_start();
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<h3 class=" h3-responsive mt-0 text-center">My Shopping Cart</h3>
+				<h3 class=" h3-responsive text-center my-5">My Shopping Cart</h3>
 				<?php if($cart_id == ''): ?>
 					<div class="text-center">
 						<i class="fa fa-cart-arrow-down icon-cart my-5"></i><br>
@@ -145,7 +145,7 @@ ob_start();
 		} ?>
 
 		<div class="row">
-			<div class="col-md-12 col-sm-12">
+			<div class="col-md-12 col-sm-12 mt-5">
 				<h3 class="h3-responsive">Totals</h3>
 				<div class="row">
 					<div class="col-md-8">	

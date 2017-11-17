@@ -14,28 +14,33 @@ if(isset($_SESSION['myparser'])){
 	$itemQ = $db->query("SELECT * FROM carts WHERE id = '$cart_id' LIMIT 1");
 	$iresult = mysqli_fetch_assoc($itemQ);
 	$cart = json_decode($iresult['items'],true);
-
+	$full_name = $details['full_name'];
+	$email = $details['email'];
+	$address = $details['address'].' '. $details['state'];
+	$phone = $details['phone1'] .' '. $details['phone2'];
+	$grand_total = $details['grand_total'];
+	$reference = $details['reference'];
+	
 	?>
 
-
-
 	<h1 class="text-center text-success">Thank You </h1>
-	<p class="text-center">You will be Contacted Shortly</p>
-	<p class = "text-center" >You may Screenshot or Print this Page as Receipt</p>
-	<div class="col-md-6">
+	<p class="text-center">An email has been sent to you with your Order Information</p>
+	<p class = "text-center" >You may also Screenshot or Print this Page as Receipt</p>
+	<div class="row" >
+	<div class="col-md-6 col-sm-12 col-xs-12">
 		<h2 class="text-success">Order Information</h2>
 		<address>
-			<b>Name: </b><?=$details['full_name']; ?><br>
-			<b>Email: </b><?=$details['email']; ?><br>
-			<b>State: </b><?=$details['state'] ?><br>
+			<b>Name: </b><?=$full_name?><br>
+			<b>Email: </b><?=$email ?><br>
+			<b>Shipping Address: </b><?=$address?><br>
 			<b>Phone Number:</b>
-			<?=$details['phone1']; ?><br>
-			<?=($details['phone2'] != '')? $details['phone2'] : '' ;?>
+			<?=$phone?><br>
 			<p>Your Receipt Number is <b class="text-danger"><?=$cart_id ?></b></p>
-			<p>Your Reference Number is <b class="text-danger"><?=$details['reference'] ?></b></p>
-			<h4><b>Grand Total: <span class="text-success"><?=money($details['grand_total']) ?></span></b></h4>
+			<p>Your Reference Number is <b class="text-danger"><?=$reference?></b></p>
+			<h4><b>Grand Total: <span class="text-success"><?=money($grand_total);?></span></b></h4>
 		</address>
 	</div>
+
 
 
 	<?php
@@ -46,9 +51,9 @@ if(isset($_SESSION['myparser'])){
 	}
 
 	?>
-	<div class="col-md-6">
+	<div class="col-md-6 col-sm-12 col-xs-12 scroll">
 		<h3 class="text-center text-success" >Ordered Details</h3>
-		<table class="table-condensed table table-striped table-bordered">
+		<table class="table-condensed table table-striped table-bordered table-responsive">
 			<thead>
 				<th>Title</th>
 				<th>Category</th>
@@ -71,9 +76,9 @@ if(isset($_SESSION['myparser'])){
 			</tbody>
 		</table>
 	</div>
+</div>
 
-
-	<?php 
+<?php
 	include 'includes/footer.php';
 
 }else{

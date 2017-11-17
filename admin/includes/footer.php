@@ -3,7 +3,8 @@
 <footer class="text-center">
 		&copy; 2017 Developed By Chigoziemadubuko@gmail.com
 </footer>
-
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/toastr.min.js"></script>
 <script>
 	function updateSizes() {
 		var sizeString = '';

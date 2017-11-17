@@ -29,15 +29,15 @@ $sizeArray = explode(',', $sizeString);
 				<div class="container-fluid">
 					<div class="row">
 						<div id="modal_errors" class= "bg-danger"></div>
-						<div class=" col-sm-6 callbacks_container">
-							<ul class="rslides" id="slider1">
+						<div class=" col-md-6  col-sm-6 col-xs-12 callbacks_container">
+							<ul class="rslides " id="slider1">
 								<?php $photos = explode(',', $modal['image']);
 								foreach($photos as $photo) :?>
-								<li><img src="<?=$photo;?>" class=" img-responsive"></li>
+								<li><img src="<?=$photo;?>" class=" img-responsive center-block"></li>
 							<?php endforeach ?>
 						</ul>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-md-6 col-sm-6 col-xs-12 ">
 						<div class="px-4">
 							<h4>Details</h4>
 							<p><?=nl2br($modal['description']);?></p>
@@ -50,14 +50,15 @@ $sizeArray = explode(',', $sizeString);
 								<input type="hidden" id="product_id" name = "product_id" value = "<?=$id?>">
 
 								<div class="form-group">
-									<div class="col-xs-4 col-md-4">
+									<div class="row">
+									<div class="col-md-6 col-sm-6 col-xs-6">
 										<label for="quantity">Quantity</label>
 										<input type="number" min = "0" class="form-control" id="quantity" name="quantity">
 									</div>
-									<div class="col-xs-6 col-md-6">
+									<div class="col-md-6 col-md-6 col-xs-6">
 										<label for="size">Size:</label>
 										<select name="size" id = "size" class="form-control">
-											<option value=""></option>
+											<option value="" disabled selected>Choose Size</option>
 											<?php foreach ($sizeArray as $string) {
 												$string_array = explode(':', $string);
 												$size = $string_array[0];
@@ -69,6 +70,7 @@ $sizeArray = explode(',', $sizeString);
 											?>
 										</select>
 									</div>
+								</div>
 								</div>
 							</form>
 						</div>
@@ -101,7 +103,6 @@ $sizeArray = explode(',', $sizeString);
             nav: true,
             speed: 500,
             pause:true,
-            pauseControl:true,
             namespace: "callbacks",
         });
 });

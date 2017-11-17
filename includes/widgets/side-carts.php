@@ -1,11 +1,13 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/shop/core/init.php'; ?>
 
 
-<div class="side-cart ">
-	<div class="reloadside"> 
-		<h4 class="text-center h4-responsive text-primary">Shopping Cart</h4>
+<div class="side-cart z-depth-1">
+		<div class="side-header">
+			<h5 class="text-center h5-responsive">Shopping Cart</h5>
+		</div>
+		
 		<?php if(empty($cart_id)): ?>
-			<p class="text-center">Your Cart is empty.</p>
+			<p class="text-center my-3 text-danger">Your Cart is empty.</p>
 		<?php else: 
 		$cartQ = $db->query("SELECT * FROM carts WHERE id = '$cart_id'");
 		$result = mysqli_fetch_assoc($cartQ);
@@ -13,10 +15,11 @@
 		$subtotal = 0;
 		$cqty = 0;
 		?>
-		<table class=" table table-condensed" id="widget">
+		<div class="side-table">
+			<table class=" table table-condensed" id="widget">
 			<tbody>
 				<?php foreach ($items as $item):
-				$productQ = $db->query("SELECT * FROM products WHERE id = '{$item['id']}'");
+				$productQ = $db->query("SELECT title,price FROM products WHERE id = '{$item['id']}'");
 				//to check if is available
 				$count = mysqli_num_rows($productQ);
 				if($count>0):
@@ -40,11 +43,15 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="cart.php" class="btn btn-primary p-3">View Cart</a>
+		</div>
+		
+	<a href="cart.php" class="btn p-3 unique-color">View Cart</a>
 <?php endif; ?>
-</div>
 <?php echo ob_get_clean() ?>
 </div>
 <script>
-	$('span.badge').html('<?=$cqty?>');
+	$(function(){
+			$('span.badge').html('<?=$cqty?>');
+	});
+
 </script>

@@ -24,7 +24,10 @@
 	}
 	?>
 	<div class="popular-item">
-		<h4 class="text-center h4-reponsive text-primary">Popular Items</h4>
+		<div class="side-header">
+			<h5 class="text-center h5-responsive">Popular Items</h5>
+		</div>
+		
 		<table class="table table-condensed table-hover deals" id='widget'>
 			<tbody>
 				<?php foreach($used_ids as $id): 
@@ -35,7 +38,7 @@
 				}
 				$product = mysqli_fetch_assoc($productQ); ?>
 				<tr onclick ="detailsModal('<?=$product['id']?>')" >
-					<td><?=substr($product['title'],0,15); ?></td>
+					<td><?=$product['title']; ?></td>
 					<td>View</td>
 				</tr>
 			<?php endforeach ?>
