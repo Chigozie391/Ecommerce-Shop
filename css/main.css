@@ -69,7 +69,7 @@
  }
 
  .navbar {
-     z-index: 10;
+     z-index: 16;
  }
 
  .fa-shopping-cart, .fa-cart-plus {
@@ -147,6 +147,16 @@
      max-width: 100%;
      border-radius: 5px;
  }
+
+ .card-footer p {
+     font-size: 16px;
+     font-weight: 600
+ }
+
+ .card-title {
+     color: #30637b;
+     text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+ }
  /*model index*/
 
  #modal_errors, #modal_errors p {
@@ -164,7 +174,7 @@
  /*modal checkout*/
 
  .modal-backdrop {
-     z-index: 12;
+     z-index: 17;
  }
 
  .modal-footer .btn+.btn {
@@ -172,11 +182,11 @@
  }
 
  .modal {
-     z-index: 14;
+     z-index: 18;
  }
 
  .icon-cart {
-     font-size: 20rem;
+     font-size: 20rem !important;
      color: #eee;
  }
  /*sidebar*/
@@ -189,7 +199,8 @@
      border-top-right-radius: 5px;
  }
 
- .side-table {
+ .sidecart-table {
+     position: relative;
      margin-top: 15px;
      padding: 0 10px
  }
@@ -201,7 +212,7 @@
  .side-cart {
      background-color: #f8f8f8d4;
      border-radius: 5px;
-     padding: 5px 0;
+     padding-bottom: 5px;
  }
 
  .side-cart a {
@@ -226,8 +237,19 @@
  }
  /*cart*/
 
+ .cart-wrapper {
+     position: relative;
+     min-height: 320px;
+ }
+
+ .spin-cart {
+     display: block;
+ }
+
+
  .stripped {
      background-color: rgba(249, 249, 249, 1);
+     position: relative;
  }
 
  .tcart a {
@@ -290,7 +312,7 @@
      }
  }
 
- .paystackspin {
+ .spin {
      display: none;
      z-index: 15;
  }
@@ -369,6 +391,9 @@
      .callbacks_container {
          overflow: hidden;
      }
+     .loadcart-spin {
+         top: 20% !important;
+     }
  }
 
  @media (min-width: 481px) and (max-width:768px) {
@@ -380,6 +405,9 @@
      }
      .sidebar {
          margin-top: 0!important;
+     }
+     .loadcart-spin {
+         top: 20% !important;
      }
  }
 
@@ -393,6 +421,9 @@
      .sidebar {
          margin-top: 0!important;
      }
+     .loadcart-spin {
+         top: -20% !important;
+     }
  }
 
  @media screen and (min-width: 1025px) {
@@ -403,11 +434,15 @@
      #headerWrapper {
          height: 235px
      }
+
      .sidebar {
          margin-top: 80px;
      }
      .callbacks_container {
          max-height: 420px;
          overflow: hidden;
+     }
+     .loadcart-spin {
+         top: -15% !important;
      }
  }

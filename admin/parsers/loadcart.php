@@ -47,7 +47,7 @@ ob_start();
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<h3 class=" h3-responsive text-center my-5">My Shopping Cart</h3>
+				
 				<?php if($cart_id == ''): ?>
 					<div class="text-center">
 						<i class="fa fa-cart-arrow-down icon-cart my-5"></i><br>
@@ -70,6 +70,9 @@ ob_start();
 
 				?>
 				<div class="row stripped">
+					<div data-u="loading" class="jssorl-009-spin spin loadcart-spin <?='loadcart-spin'.$product['id']?>" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;">
+							<img style="margin-top:-15px;position:relative;top:50%;width:38px;left:0;height:38px;" src="images/slider/spin2.svg" />
+						</div>
 					<div class="col-md-5 col-sm-4 my-4 ">
 						<span class="delbtn">
 							<a onclick="update_cart('delete','<?=$product['id']?>','<?=$uitem['size']?>')" class="btn red lighten-2 btn-xs p-2 mr-3 shadow-hov"><i class="fa fa-trash-o"></i></a>

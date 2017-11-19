@@ -42,14 +42,31 @@ i.fa {
 }
 
 #login-form {
-    width: 50%;
-    height: 60%;
+    float: none;
     border: 1px solid #000;
     border-radius: 10px;
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.6);
-    margin: 8% auto;
+    margin: 5% auto;
     padding: 15px;
     background-color: #fff;
+}
+
+#headerWrapper {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    background-image: url(../../images/headerlogo/catimg.jpg);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-color: #fefefe;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.z-depth-3 {
+    -webkit-box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .add-user {
@@ -58,7 +75,6 @@ i.fa {
 
 .flash {
     position: absolute;
-    top: 50px;
     left: 0;
     right: 0;
 }
@@ -66,4 +82,38 @@ i.fa {
 footer {
     margin-top: 10px;
     padding-top: 25px;
+}
+
+@media screen and (max-width: 480px) {
+    #headerWrapper {
+        height: 100px
+    }
+    #login-form {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 481px) and (max-width:768px) {
+    #headerWrapper {
+        height: 135px;
+    }
+    #login-form {
+        margin-top: 100px;
+    }
+}
+
+@media (min-width: 769px) and (max-width:1024px) {
+    #headerWrapper {
+        height: 170px;
+    }
+    #login-form {
+        margin-top: 100px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+    #headerWrapper {
+        height: 235px
+    }
 }

@@ -17,7 +17,7 @@ $item[] = array(
 
 $query = $db->query("SELECT title FROM products WHERE id = '$product_id' LIMIT 1");
 $product = mysqli_fetch_assoc($query);
-$_SESSION['success_flash'] = $product['title'].' has been added to your Cart.';
+$_SESSION['success'] = $product['title'].' has been added to your Cart.';
 //check if the cart cookie exist (items is already in database) or we have some item in the cart
 if($cart_id != ''){
 	$cartQ = $db->query("SELECT * FROM carts WHERE id = '$cart_id'");

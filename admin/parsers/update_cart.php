@@ -15,7 +15,7 @@ if($mode == 'removeone'){
 			if($item['quantity'] > 1){
 				$item['quantity'] = $item['quantity'] - 1;
 				$update_items[] = $item;
-				$_SESSION['success_flash'] = 'The Item has been Updated';
+				$_SESSION['success'] = 'The Item has been Updated';
 			}else{
 				//sets it to 1
 				$items['quantity'] = 1;
@@ -34,7 +34,7 @@ if($mode == 'addone'){
 	foreach ($items as $item) {
 		if($item['id'] == $edit_id && $item['size'] == $edit_size){
 			$item['quantity'] = $item['quantity'] + 1;
-			$_SESSION['success_flash'] = 'The Item has been Updated';
+			$_SESSION['success'] = 'The Item has been Updated';
 		}
 		$update_items[] = $item;
 	}

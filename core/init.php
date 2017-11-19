@@ -7,6 +7,7 @@ if(mysqli_connect_errno()){
 }
 $domain =($_SERVER['HTTP_HOST'] != '127.0.0.1')?'.'.$_SERVER['HTTP_HOST'] : false;
 session_start();
+ob_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/shop/config.php';
 require_once BASEURL.'helpers/helpers.php';
 
@@ -32,41 +33,32 @@ if(isset($_SESSION['SBUser'])){
 	if(count($fn) > 1){
 		$userData['last'] = $fn[1];
 	}
-
 }
 
-if(isset($_SESSION['success_flash'])):?>
-	<script>
-		toastr.success("<?=$_SESSION['success_flash']?>");
-	</script>
-<?php 
+if(isset($_SESSION['success_flash'])){
+	echo "<div class='flash bg-success green lighten-4'><p class = 'text-center text-success'>".$_SESSION['success_flash']."</p></div>";
 	unset($_SESSION['success_flash']);
- endif;
+}
 
- if(isset($_SESSION['error_flash'])):?>
-	<script>
-		toastr.error("<?=$_SESSION['error_flash']?>");
-	</script>
-<?php 
+if(isset($_SESSION['error_flash'])){
+	echo "<div class='flash bg-danger red lighten-4'><p class = 'text-center text-danger'>".$_SESSION['error_flash']."</p></div>";
 	unset($_SESSION['error_flash']);
- endif;
+}
 
- if(isset($_SESSION['info_flash'])):?>
-	<script>
-		toastr.info("<?=$_SESSION['info_flash']?>");
-	</script>
+if(isset($_SESSION['success'])):?>
+<script>
+	toastr.success("<?=$_SESSION['success']?>");
+</script>
 <?php 
-	unset($_SESSION['info_flash']);
- endif;
+unset($_SESSION['success']);
+endif;
 
- if(isset($_SESSION['warning_flash'])):?>
-	<script>
-		toastr.warning("<?=$_SESSION['warning_flash']?>");
-	</script>
+if(isset($_SESSION['info_flash'])):?>
+<script>
+	toastr.info("<?=$_SESSION['info_flash']?>");
+</script>
 <?php 
-	unset($_SESSION['warning_flash']);
- endif;
+unset($_SESSION['info_flash']);
+endif;
 
-
-ob_start();
 ?>

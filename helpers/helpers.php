@@ -1,6 +1,6 @@
 <?php 
 	function display_errors($errors){
-	$display = '<ul class = "bg-danger red lighten-4">';
+	$display = '<ul class = "bg-danger red lighten-5">';
 	foreach($errors as $error){
 		$display .= '<li class = "text-danger">'.$error.'</li>';
 	}
@@ -12,7 +12,7 @@
 		return htmlentities($dirt,ENT_QUOTES,"UTF-8");
 	}
 	function money($price){
-		return '&#8358;'.number_format($price,2);
+		return '&#8358;'.number_format($price);
 
 	}
 

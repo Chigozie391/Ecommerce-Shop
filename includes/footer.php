@@ -4,9 +4,9 @@
 		<?php include 'includes/footerdetails.php'; ?>
 </footer>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/toastr.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/responsiveslides.min.js"></script>
-    <script src="js/toastr.min.js"></script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
 	//alerts

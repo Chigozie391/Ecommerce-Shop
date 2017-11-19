@@ -123,10 +123,10 @@
 		</form>
 	</div>
 </div>
-
-
-
-
-
-
 <?php include 'includes/footer.php';?>
+<script>
+	setTimeout(function(){
+		$('.flash').fadeOut('slow');
+		$('.flash').remove();
+	},5000);
+</script>

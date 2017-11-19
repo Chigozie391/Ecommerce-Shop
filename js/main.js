@@ -1,4 +1,5 @@
 function detailsModal(id) {
+    $('.spin' + id).css({ 'display': 'block' });
     var data = { 'id': id };
     $.ajax({
         method: 'POST',
@@ -8,25 +9,28 @@ function detailsModal(id) {
             $('#details-modal').remove();
             $('body').append(data);
             $('#details-modal').modal('toggle');
+            $('.spin' + id).css({ 'display': 'none' });
         },
         error: function() {
-            alert('Something Went Wrong');
+            toastr["error"]("Network Connection failed,Try again");
+            $('.spin' + id).css({ 'display': 'none' });
         }
     });
 }
 
 //incrementing the quantiy in the databse
 function update_cart(mode, edit_id, edit_size) {
+    $('.loadcart-spin' + edit_id).css({ 'display': 'block' });
     var data = { 'mode': mode, 'edit_id': edit_id, 'edit_size': edit_size };
     $.ajax({
         url: '/shop/admin/parsers/update_cart.php',
         data: data,
         method: 'POST',
-        success: function(data) {
+        success: function() {
             load_cart();
         },
         error: function() {
-            alert('Something Went Wrong');
+            toastr["error"]("Network Connection failed,Try again");
         }
     });
 }
@@ -66,21 +70,23 @@ function add_to_cart() {
         return;
 
     } else {
+        $('.sidecart-spin').css({ 'display': 'block' });
+
         $.ajax({
             url: '/shop/admin/parsers/add_cart.php',
             method: 'POST',
             data: data,
             success: function() {
-                sidecarts();
                 $('.modal-backdrop').fadeOut(function() {
                     $('#details-modal').modal('toggle');
                     $('.modal-backdrop').remove();
-
                 });
+                sidecarts();
 
             },
             error: function() {
-                alert('Something went wrong');
+                toastr["error"]("Network Connection failed,Try again");
+                $('.sidecart-spin').css({ 'display': 'none' });
             }
         });
     }
@@ -92,14 +98,10 @@ function sidecarts() {
         method: 'GET',
         success: function(data) {
             $('#sidereload').html(data);
-
+            $('.sidecart-spin').css({ 'display': 'none' });
         },
     });
 }
-
-
-
-
 
 function check_address() {
     var data = {
@@ -127,10 +129,11 @@ function check_address() {
             }
         },
         error: function() {
-            alert('Something Went Wrong');
+            toastr["error"]("Network Connection failed,Try again");
         }
     });
 }
+var obj = {};
 
 function payWithPaystack() {
     var total = $('#grand_total').val();
@@ -152,7 +155,6 @@ function payWithPaystack() {
                     display_name: "Full Name",
                     variable_name: "full_name",
                     value: full_name,
-
                 },
                 {
                     display_name: "Mobile Number",
@@ -163,25 +165,22 @@ function payWithPaystack() {
                     display_name: "Receipt",
                     variable_name: "cart_id",
                     value: cart_id,
-
                 },
                 {
                     display_name: "Address",
                     variable_name: "address",
                     value: address,
-
                 },
                 {
                     display_name: "State",
                     variable_name: "state",
                     value: state,
-
                 }
             ]
         },
         callback: function(response) {
             var reference = response.reference;
-            var data = {
+            obj = {
                 'full_name': full_name,
                 'email': email,
                 'state': state,
@@ -196,25 +195,27 @@ function payWithPaystack() {
             $.ajax({
                 url: '/shop/admin/parsers/thankyouparser.php',
                 method: 'POST',
-                data: data,
-                success: function(data) {
+                data: obj,
+                success: function() {
+                    mail();
                     location.href = 'thankyou.php';
                 },
                 error: function() {
-                    alert('Something Went Wrong');
+                    toastr["error"]("Network Connection failed,Try again");
                 }
             });
-
         },
         onClose: function() {
             $('.paystackspin').css({ 'display': 'none' });
         }
     });
-
     handler.openIframe();
 }
 
-$(function() {
-
-
-});
+function mail() {
+    $.ajax({
+        url: '/shop/admin/parsers/email.php',
+        method: 'POST',
+        data: obj,
+    });
+}

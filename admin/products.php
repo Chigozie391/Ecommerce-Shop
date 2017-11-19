@@ -288,7 +288,7 @@
 	else
 	{
 
-	$sql = "SELECT * FROM Products WHERE deleted = 0";
+	$sql = "SELECT * FROM products WHERE deleted = 0";
 	$presult = $db->query($sql);
 
 	if(isset($_GET['featured'])){
@@ -303,7 +303,7 @@
 
 
 
-<h4 class="text-center">Products</h4><br>
+<h4 class="text-center">Products</h4>
 <a href="products.php?add=1" class="btn btn-success pull-right" id="add-product-button">Add Products</a>
 <table class="table table-bordered table-condensed table-striped">
 	<thead>
@@ -353,6 +353,12 @@
 	$('document').ready(function(){
 		get_child_options('<?=$category;?>');
 	});
+
+	setTimeout(function(){
+		$('.flash').fadeOut('slow');
+		$('.flash').remove();
+	},5000);
+
 </script>
 
 

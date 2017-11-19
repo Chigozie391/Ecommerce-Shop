@@ -21,7 +21,7 @@
 ?>
 <div class="container-fluid">
 
-	<div id="login-form">
+	<div id="login-form" class="col-md-6 col-sm-12 col-xs-12">
 		<?php 
 			if($_POST){
 				//form validation
@@ -52,7 +52,6 @@
 		}
 
 		 ?>
-		<div></div>
 		<h2 class="text-center">Change Password</h2>
 		<form action="changepassword.php" method="post">
 			<div class="form-group">
@@ -76,3 +75,9 @@
 	</div>
 	 
  <?php include 'includes/footer.php'; ?>
+ <script>
+	setTimeout(function(){
+		$('.flash').fadeOut('slow');
+		$('.flash').remove();
+	},5000);
+</script>
