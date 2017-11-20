@@ -26,7 +26,7 @@ $pquery = $db->query($sql);
 						$cquery = $db->query($sql2);
 						?>
 						
-						<ul class ="dropdown-menu" role ="menu">
+						<ul class ="dropdown-menu py-0" role ="menu">
 							<?php while($child = mysqli_fetch_assoc($cquery)) :
 							?>
 							<li><a href = "category.php?cat=<?=$child['id']?>"><?=$child['category'] ?></a></li>
@@ -34,7 +34,7 @@ $pquery = $db->query($sql);
 						</ul>
 					</li>
 				<?php endwhile; ?>
-				<li><a href="cart.php"><i class="fa fa-shopping-cart"></i><b> Cart </b><span id="cqty" class="badge z-depth-2 red"><?=$cqty; ?></span></a></li>
+				<li><a href="cart.php" class="navcart-icon"><i class="fa fa-shopping-cart"></i><b> Cart </b><span id="cqty" class="badge z-depth-2 red"><?=$cqty; ?></span></a></li>
 			</ul>
 		</div>
 	</div>

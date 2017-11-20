@@ -24,7 +24,7 @@ $featured = $db->query($sql);
 				<div class="card card-cascade wider">
 
 					<!--Card image-->
-					<div class="view overlay hm-white-slight" onclick="detailsModal(<?=$product['id']?>)">
+					<div class="view overlay hm-white-slight" onclick="detailsModal('<?=$product['id']?>','index')">
 						<div data-u="loading" class="jssorl-009-spin spin <?='spin'.$product['id']?>" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.5);">
 							<img style="margin-top:-15px;position:relative;top:50%;width:38px;left:40%;height:38px;" src="images/slider/spin.svg" />
 						</div>
@@ -35,7 +35,6 @@ $featured = $db->query($sql);
 						</a>
 					</div>
 					<!--Card image-->
-
 					<!--Card content-->
 					<div class="card-body text-center mt-4">
 						<!--Category & Title-->
@@ -47,7 +46,7 @@ $featured = $db->query($sql);
 						<div class="card-footer">
 							<div class="mt-4" ><p class="green-text price"><?=money($product['price'])?></p></div>
 							<div class="pb-3">
-								<button type="button" class="btn mb-2 btn-success" onclick="detailsModal(<?=$product['id']?>)">Details</button>
+								<button type="button" class="btn mb-2 btn-success" onclick="detailsModal('<?=$product['id']?>','index')">Details</button>
 							</div>
 						</div>
 
