@@ -68,7 +68,7 @@
 			</div>
 			<div class="form-group">
 				<a href="index.php" class="btn btn-default">Cancel</a>
-				<input type="submit" name="submit" value="Login" class="btn btn-primary">
+				<input type="submit" name="submit" value="Change" class="btn btn-primary">
 			</div>
 		</form>
 		<p class="text-right"><a href="/shop/index.php" alt ="home">Visit SIte</a></p>

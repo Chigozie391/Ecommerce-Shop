@@ -305,7 +305,8 @@
 
 <h4 class="text-center">Products</h4>
 <a href="products.php?add=1" class="btn btn-success pull-right" id="add-product-button">Add Products</a>
-<table class="table table-bordered table-condensed table-striped">
+<div class="table-responsive col-md-12 col-sm-12">
+	<table class="table table-bordered table-condensed table-striped">
 	<thead>
 		<th></th>
 		<th>Product</th>
@@ -343,6 +344,8 @@
 		<?php endwhile; ?>
 	</tbody>
 </table>
+</div>
+
 
 	
 <?php 

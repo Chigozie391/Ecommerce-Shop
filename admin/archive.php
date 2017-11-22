@@ -33,7 +33,8 @@
  ?>
  <div class="msg"></div>
 <h4 class="text-center">Archived Products</h4><br>
-<table class="table table-bordered table-condensed table-striped">
+<div class="table-responsive">
+	<table class="table table-bordered table-condensed table-striped">
 	<thead>
 		<th></th>
 		<th>Product</th>
@@ -65,6 +66,8 @@
 	<?php 	endwhile; ?>
 	</tbody>
 </table>
+
+</div>
 
  <?php include 'includes/footer.php' ;?>
  <script>

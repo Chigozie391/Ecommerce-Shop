@@ -17,28 +17,26 @@ if(isset($_SESSION['myparser'])){
 	$full_name = $details['full_name'];
 	$email = $details['email'];
 	$address = $details['address'].' '. $details['state'];
-	$phone = $details['phone1'] .' '. $details['phone2'];
+	$phone = $details['phone1'] .'<br> '. $details['phone2'];
 	$grand_total = $details['grand_total'];
 	$reference = $details['reference'];
 	
 	?>
+	<div class = "check text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
 
-	<h1 class="text-center text-success">Thank You </h1>
-	<p class="text-center">An email has been sent to you with your Order Information</p>
-	<p class = "text-center" >You may also Screenshot or Print this Page as Receipt</p>
-	<div class="row" >
-	<div class="col-md-6 col-sm-12 col-xs-12">
+	<h1 class="text-center thankyou"><strong>Thank You!</strong></h1>
+	<p class="text-center">An email has been sent to you with your Order Information <br>
+	You may also Screenshot or Print this Page as Receipt</p>
+	<div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-12 order-info pl-5">
 		<h2 class="text-success">Order Information</h2>
-		<address>
-			<b>Name: </b><?=$full_name?><br>
-			<b>Email: </b><?=$email ?><br>
-			<b>Shipping Address: </b><?=$address?><br>
-			<b>Phone Number:</b>
-			<?=$phone?><br>
-			<p>Your Receipt Number is <b class="text-danger"><?=$cart_id ?></b></p>
-			<p>Your Reference Number is <b class="text-danger"><?=$reference?></b></p>
-			<h4><b>Grand Total: <span class="text-success"><?=money($grand_total);?></span></b></h4>
-		</address>
+			<p><span>Name: </span> <?=$full_name?></p>
+			<p><span>Email: </span> <?=$email ?></p>
+			<p><span>Shipping Address: </span> <?=$address?></p>
+			<p><span>Phone Number: </span><?=$phone?></p>
+			<p><span>Your Receipt Number is </span><b style="color: #CC0000;"><?=$cart_id ?></b></p>
+			<p><span>Your Reference Number is </span><b style="color: #CC0000;"><?=$reference?></b></p>
+			<h4 class="h4-responsive"><span>Grand Total: </span><span style="color:#007E33;"><?=money($grand_total);?></span></h4>
 	</div>
 
 
@@ -51,8 +49,8 @@ if(isset($_SESSION['myparser'])){
 	}
 
 	?>
-	<div class="col-md-6 col-sm-12 col-xs-12 scroll">
-		<h3 class="text-center text-success" >Ordered Details</h3>
+	<div class="col-md-6 col-sm-6 col-xs-12 scroll order-info">
+		<h2 class="text-center text-success" >Ordered Details</h2>
 		<table class="table-condensed table table-striped table-bordered table-responsive">
 			<thead>
 				<th>Title</th>
@@ -76,8 +74,9 @@ if(isset($_SESSION['myparser'])){
 			</tbody>
 		</table>
 	</div>
-</div>
 
+</div>
+<div class ="continue-shop"><button class="btn btn-warning">Continue Shopping</button></div>
 <?php
 	include 'includes/footer.php';
 

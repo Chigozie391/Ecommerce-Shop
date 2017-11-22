@@ -124,7 +124,8 @@ if(isset($_GET['add'])){
 
 	<h4 class="text-center">Users</h4><hr>
 	<a href="users.php?add=1" class="btn btn-success pull-right">Add User</a>
-	<table class="table table-bordered table-striped table-condensed">
+	<div class="table-responsive col-md-12 col-sm-12">
+		<table class="table table-bordered table-striped table-condensed">
 		<thead>
 			<th></th>
 			<th>Name</th>
@@ -152,6 +153,8 @@ if(isset($_GET['add'])){
 		<?php endwhile; ?>
 	</tbody>
 </table>
+	</div>
+	
 <?php }include 'includes/footer.php'; ?>
 <script>
 	setTimeout(function(){
